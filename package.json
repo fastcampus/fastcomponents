@@ -3,12 +3,19 @@
   "version": "0.0.1",
   "description": "Common components for Fastcampus",
   "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastcampus/fastcomponents.git"
+  },
   "scripts": {
-    "stop-all": "lsof -ti:8080 | xargs kill",
+    "stop": "lsof -ti:8080 | xargs kill",
     "start": "npm run serve",
     "serve": "webpack serve --progress --mode development --config ./playground/webpack.config.js",
-    "prebuild": "npm run lint",
-    "build": "webpack --progress --mode production",
+    "build": "tsc",
+    "prebuild": "rimraf ./dist && npm run lint",
+    "prepublishOnly": "npm run build",
     "clean": "rm -rf ./dist ./node_modules package-lock.json ",
     "lint": "eslint --ext .js --ignore-path .eslintignore ."
   },
