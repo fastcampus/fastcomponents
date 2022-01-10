@@ -19,7 +19,7 @@
     "sourceMap": true,
     "allowJs": true,
     "checkJs": true,
-    "baseUrl": "./",
+    "baseUrl": "./"
   },
   "exclude": ["node_modules", "dist"]
 }
