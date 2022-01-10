@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Playground for fastcomponents</title>
+  </head>
+  <style>
+    :root {
+      /* 디자인시스템 내 있는 기본 컬러, 컴포넌트 색상을 정의 */
+
+      /* 기본 컬러 */
+      --theme-brightness: 1;
+      --color-black: #000;
+      --color-gray: gray;
+      --color-white: #fff;
+      --color-primary-1: #314bfe;
+      --color-primary-2: #4966f5;
+      --color-primary-3: #111842;
+      --color-secondary-1: #f5f9ff;
+      --color-secondary-2: #f33;
+      --color-secondary-3: #b6edff;
+      --color-secondary-4: #ffd78a;
+      --color-secondary-5: #476dec;
+      --color-error: #b00020;
+
+      /*
+        design system component style
+        --color-component-state-target-state
+      */
+
+      --color-font-default: var(--color-black);
+      --color-border-default: var(--color-gray);
+      --color-header: var(--color-black);
+    }
+
+  </style>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but btob doesn't work properly without JavaScript enabled. Please enable it to continue.</strong
+      >
+    </noscript>
+    <main id="app"></main>
+  </body>
+</html>
