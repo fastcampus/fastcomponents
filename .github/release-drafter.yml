@@ -1,0 +1,19 @@
+categories:
+  - title: 'Fastcomponents'
+    labels:
+      - 'new'
+      - 'add'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bug'
+      - 'fix'
+  - title: '🧰 Maintenance'
+    labels:
+      - 'misc'
+      - 'chore'
+exclude-labels:
+  - 'skip-changelog'
+template: |
+  ## What’s Changed
+
+  $CHANGES
