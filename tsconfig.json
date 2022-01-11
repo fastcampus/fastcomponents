@@ -15,6 +15,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
+    "types": ["@emotion/react/types/css-prop"],
     "sourceMap": true,
     "allowJs": true,
     "checkJs": true,
