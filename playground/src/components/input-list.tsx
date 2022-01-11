@@ -23,7 +23,7 @@ const InputList = () => {
       </div>
       <Input
         style={css`
-          background-color: blue;
+          background-color: rgba(0, 255, 0, 0.3);
           padding: 2rem;
           width: 25rem;
           display: flex;
@@ -37,14 +37,14 @@ const InputList = () => {
             font-size: 2.5rem;
           }
         `}
-        setInput={setMessageA}
+        onChange={(e) => setMessageA(e.target.value)}
       />
       <Input
         style={css`
           display: flex;
           padding: 2rem;
           width: 25rem;
-          background-color: black;
+          background-color: rgba(0, 0, 255, 0.3);
           align-items: center;
           & > input {
             height: 3rem;
@@ -55,7 +55,7 @@ const InputList = () => {
             font-size: 2.5rem;
           }
         `}
-        setInput={setMessageB}
+        onChange={(e) => setMessageB(e.target.value)}
       />
     </div>
   );
