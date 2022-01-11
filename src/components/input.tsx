@@ -1,17 +1,40 @@
-import React, { SetStateAction } from 'react';
-import type { SerializedStyles } from '@emotion/react';
+import React from 'react';
+import type { InputProps } from '../types/input.interface';
 
-export interface Input {
-  style: SerializedStyles;
-  setInput: React.Dispatch<SetStateAction<string>>;
-  onSubmit?: React.MouseEventHandler<HTMLElement>;
-}
-
-const Input = ({ style, setInput, onSubmit }: Input) => (
-  <div css={style}>
-    <input onChange={(e) => setInput(e.target.value)} />
-    <button onClick={onSubmit}>submit</button>
-  </div>
+const Input = ({
+  style,
+  className,
+  defaultValue,
+  placeholder,
+  disabled,
+  onChange,
+  required,
+  ref,
+  type,
+  value,
+  readOnly,
+  max,
+  maxLength,
+  min,
+  minLength,
+}: InputProps) => (
+  <input
+    css={style}
+    className={className}
+    defaultValue={defaultValue}
+    disabled={disabled}
+    ref={ref}
+    onChange={onChange}
+    placeholder={placeholder}
+    readOnly={readOnly}
+    required={required}
+    type={type}
+    value={value}
+    max={max}
+    maxLength={maxLength}
+    min={min}
+    minLength={minLength}
+  />
 );
 
 export default Input;
