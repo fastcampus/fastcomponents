@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import FastcompCalender from '../../../src/components/calender';
+import FastcompCalender from '../../../src/components/calender/calender';
 
 const Calender = () => {
   return (
