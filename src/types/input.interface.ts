@@ -1,5 +1,3 @@
-import type { SerializedStyles } from '@emotion/react';
-
 type InputType =
   | 'button'
   | 'checkbox'
@@ -25,7 +23,7 @@ type InputType =
   | 'week';
 
 export interface InputProps {
-  style: SerializedStyles;
+  style?: React.CSSProperties;
   className?: string;
   defaultValue?: string;
   placeholder?: string;
