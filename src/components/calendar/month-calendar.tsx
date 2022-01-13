@@ -29,7 +29,7 @@ const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
     }
   }
   return (
-    <div>
+    <div className="month-calendar">
       <Navigator />
       {WeekCalendarList}
     </div>
