@@ -58,7 +58,7 @@ const Calendar = ({ date = new Date() }: CalendarProps) => {
 
   return (
     <CalendarContext.Provider value={{ selectedDate, isCurrentYearMonth }}>
-      <div>
+      <div className="fc-calendar">
         <div>
           <button onClick={increaseCalendarLocation}>+</button>
           {CalendarLocation.year}-{CalendarLocation.month}
