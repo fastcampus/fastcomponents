@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import FastcompCalendar from '../../../src/components/calendar';
+import { Calendar as FCCalendar } from '../../../src';
 
 const Calendar = () => {
   return (
@@ -38,7 +38,7 @@ const Calendar = () => {
         }
       `}
     >
-      <FastcompCalendar />
+      <FCCalendar />
     </div>
   );
 };

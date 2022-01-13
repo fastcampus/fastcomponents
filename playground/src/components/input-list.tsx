@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import Input from '../../../src/components/input';
+import { Input } from '../../../src';
 
 const InputList = () => {
   const [messageA, setMessageA] = useState('');
