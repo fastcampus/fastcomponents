@@ -1,15 +1,15 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import FastcompCalender from '../../../src/components/calender/calender';
+import FastcompCalendar from '../../../src/components/calendar';
 
-const Calender = () => {
+const Calendar = () => {
   return (
     <div
       css={css`
-        .fastcomp-week-calender {
+        .fastcomp-week-calendar {
           display: flex;
         }
-        .fastcomp-date-calender {
+        .fastcomp-date-calendar {
           width: 2rem;
           height: 2rem;
           background-color: rgba(0, 0, 0, 0.3);
@@ -23,9 +23,9 @@ const Calender = () => {
         }
       `}
     >
-      <FastcompCalender />
+      <FastcompCalendar />
     </div>
   );
 };
 
-export default Calender;
+export default Calendar;

@@ -1,23 +1,23 @@
 import React from 'react';
-import WeekCalender from './week-calender';
-import type { MonthCalenderProps } from 'src/types/calender.interface';
+import WeekCalendar from './week-calendar';
+import type { MonthCalendarProps } from 'src/types/calendar.interface';
 import { DateUtil } from '@day1co/pebbles';
 
-const MonthCalender = ({ year, month }: MonthCalenderProps) => {
+const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
   const date = new Date(`${year}-${month}-01`);
   const leftPad = date.getDay();
   const monthLastDate = DateUtil.endOfMonth(date).getDate();
   const secondWeekStartDate = 8 - leftPad;
-  const WeekCalenderList = [
-    <WeekCalender key={`${year}-${month}`} startDate={1} cnt={7 - leftPad} leftPad={leftPad} />,
+  const WeekCalendarList = [
+    <WeekCalendar key={`${year}-${month}`} startDate={1} cnt={7 - leftPad} leftPad={leftPad} />,
   ];
 
   for (let i = 0; i * 7 + secondWeekStartDate <= monthLastDate; ++i) {
     const startDate = secondWeekStartDate + 7 * i;
     const nextWeekStartDate = startDate + 7;
     if (nextWeekStartDate > monthLastDate) {
-      WeekCalenderList.push(
-        <WeekCalender
+      WeekCalendarList.push(
+        <WeekCalendar
           key={`${year}-${month}-${i}`}
           startDate={startDate}
           cnt={monthLastDate - startDate + 1}
@@ -25,9 +25,9 @@ const MonthCalender = ({ year, month }: MonthCalenderProps) => {
         />
       );
     } else {
-      WeekCalenderList.push(<WeekCalender key={`${year}-${month}-${i}`} startDate={startDate} cnt={7} leftPad={0} />);
+      WeekCalendarList.push(<WeekCalendar key={`${year}-${month}-${i}`} startDate={startDate} cnt={7} leftPad={0} />);
     }
   }
-  return <div>{WeekCalenderList}</div>;
+  return <div>{WeekCalendarList}</div>;
 };
-export default MonthCalender;
+export default MonthCalendar;

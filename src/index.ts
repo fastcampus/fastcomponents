@@ -1,4 +1,4 @@
 import Input from './components/input';
-import Calender from './components/calender/calender';
+import Calendar from './components/calendar/calendar';
 
-export { Input, Calender };
+export { Input, Calendar };
