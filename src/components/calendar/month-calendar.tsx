@@ -10,24 +10,22 @@ const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
   const monthLastDate = DateUtil.endOfMonth(date).getDate();
   const secondWeekStartDate = 8 - leftPad;
   const dateCnt = 7 - leftPad;
-  const WeekCalendarList = [<WeekCalendar key={`${year}-${month}`} startDate={1} cnt={dateCnt} leftPad={leftPad} />];
+  const weekCnt = Math.floor((monthLastDate - secondWeekStartDate) / 7) + 2;
 
-  for (let i = 0; i * 7 + secondWeekStartDate <= monthLastDate; ++i) {
-    const startDate = secondWeekStartDate + 7 * i;
+  const WeekCalendarList = new Array(weekCnt).fill(0).map((_, idx) => {
+    const startDate = secondWeekStartDate + 7 * (idx - 1);
     const nextWeekStartDate = startDate + 7;
-    if (nextWeekStartDate > monthLastDate) {
-      WeekCalendarList.push(
-        <WeekCalendar
-          key={`${year}-${month}-${i}`}
-          startDate={startDate}
-          cnt={monthLastDate - startDate + 1}
-          leftPad={0}
-        />
-      );
-    } else {
-      WeekCalendarList.push(<WeekCalendar key={`${year}-${month}-${i}`} startDate={startDate} cnt={7} leftPad={0} />);
+    const isLastWeek = nextWeekStartDate > monthLastDate;
+    const lastWeekDateCnt = monthLastDate - startDate + 1;
+
+    if (idx === 0) {
+      return <WeekCalendar key={`${year}-${month}`} startDate={1} cnt={dateCnt} leftPad={leftPad} />;
     }
-  }
+    if (isLastWeek) {
+      return <WeekCalendar key={`${year}-${month}-${idx}`} startDate={startDate} cnt={lastWeekDateCnt} leftPad={0} />;
+    }
+    return <WeekCalendar key={`${year}-${month}-${idx}`} startDate={startDate} cnt={7} leftPad={0} />;
+  });
   return (
     <div className="month-calendar">
       <Navigator />
