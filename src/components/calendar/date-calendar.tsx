@@ -6,9 +6,7 @@ const DateCalendar = ({ dateNumber }: DateCalendarProps) => {
   const { selectedDate, isCurrentYearMonth } = useContext(CalendarContext);
   return (
     <div
-      className={`fastcomp-date-calendar ${
-        selectedDate.getDate() === dateNumber && isCurrentYearMonth ? 'selected' : ''
-      } `}
+      className={`fc-date-calendar ${selectedDate.getDate() === dateNumber && isCurrentYearMonth ? 'selected' : ''} `}
     >
       {dateNumber <= 0 ? '' : dateNumber}
     </div>

@@ -9,7 +9,7 @@ const WeekCalendar = ({ startDate, cnt, leftPad }: WeekCalendarProps) => {
   const rightEmptyBlockList = new Array(rightPad).fill(0).map((_, idx) => -idx);
   const dateList = [...leftEmptyBlockList, ...dateBlockList, ...rightEmptyBlockList];
   return (
-    <div className="fastcomp-week-calendar">
+    <div className="fc-week-calendar">
       {dateList.map((date: number) => {
         return <DateCalendar key={`${date}-${cnt}-${leftPad}`} dateNumber={date} />;
       })}

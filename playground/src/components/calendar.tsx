@@ -6,19 +6,21 @@ const Calendar = () => {
   return (
     <div
       css={css`
-        .fastcomp-week-calendar {
-          display: flex;
-        }
-        .fastcomp-date-calendar {
-          width: 2rem;
-          height: 2rem;
-          background-color: rgba(0, 0, 0, 0.3);
-          border: 0.1rem solid green;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          &.selected {
-            background-color: rgba(0, 255, 0, 0.3);
+        .fc-calendar {
+          .fc-week-calendar {
+            display: flex;
+          }
+          .fc-date-calendar {
+            width: 2rem;
+            height: 2rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 0.1rem solid green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.selected {
+              background-color: rgba(0, 255, 0, 0.3);
+            }
           }
         }
       `}
