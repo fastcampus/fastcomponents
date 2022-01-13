@@ -8,9 +8,8 @@ const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
   const leftPad = date.getDay();
   const monthLastDate = DateUtil.endOfMonth(date).getDate();
   const secondWeekStartDate = 8 - leftPad;
-  const WeekCalendarList = [
-    <WeekCalendar key={`${year}-${month}`} startDate={1} cnt={7 - leftPad} leftPad={leftPad} />,
-  ];
+  const dateCnt = 7 - leftPad;
+  const WeekCalendarList = [<WeekCalendar key={`${year}-${month}`} startDate={1} cnt={dateCnt} leftPad={leftPad} />];
 
   for (let i = 0; i * 7 + secondWeekStartDate <= monthLastDate; ++i) {
     const startDate = secondWeekStartDate + 7 * i;
