@@ -1,7 +1,6 @@
 import React from 'react';
 import { DateUtil } from '@day1co/pebbles';
 import WeekCalendar from './week-calendar';
-import Navigator from './navigator';
 import type { MonthCalendarProps } from 'src/types/calendar.interface';
 
 const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
@@ -26,11 +25,6 @@ const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
     }
     return <WeekCalendar key={`${year}-${month}-${idx}`} startDate={startDate} cnt={7} leftPad={0} />;
   });
-  return (
-    <div className="month-calendar">
-      <Navigator />
-      {WeekCalendarList}
-    </div>
-  );
+  return <div className="month-calendar">{WeekCalendarList}</div>;
 };
 export default MonthCalendar;
