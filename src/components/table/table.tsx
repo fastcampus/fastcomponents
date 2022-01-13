@@ -1,5 +1,6 @@
 import React from 'react';
 import type { TableProps } from '../../types/table.interface';
+
 const Table = ({ children }: TableProps) => {
   if (!children) {
     throw new Error('insert children!');
