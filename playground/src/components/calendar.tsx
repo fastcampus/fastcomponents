@@ -7,10 +7,10 @@ const Calendar = () => {
     <div
       css={css`
         .fc-calendar {
-          .fc-week-calendar {
+          .week-calendar {
             display: flex;
           }
-          .fc-date-calendar {
+          .date-calendar {
             width: 2rem;
             height: 2rem;
             background-color: rgba(0, 0, 0, 0.3);
