@@ -16,3 +16,16 @@ export interface WeekCalendarProps {
 export interface DateCalendarProps {
   dateNumber: number;
 }
+
+export interface CalendarLocation {
+  year: number;
+  month: number;
+}
+
+export interface CalendarContexts {
+  selectedDate: Date;
+  setSelectedDate?: React.Dispatch<React.SetStateAction<Date>>;
+  calendarLocation: CalendarLocation;
+  setCalendarLocation?: React.Dispatch<React.SetStateAction<CalendarLocation>>;
+  isCurrentYearMonth: boolean;
+}
