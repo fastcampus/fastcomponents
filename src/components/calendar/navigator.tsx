@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
-import { DateUtil } from '@day1co/pebbles';
-import Input from '../input';
 import { CalendarContext } from './calendar';
 
 const navigator = () => {
-  const { setSelectedDate, calendarLocation, setCalendarLocation } = useContext(CalendarContext);
+  const { calendarLocation, setCalendarLocation } = useContext(CalendarContext);
   const increaseCalendarLocation = () => {
     if (!setCalendarLocation) return;
     setCalendarLocation((state) => {
@@ -37,24 +35,11 @@ const navigator = () => {
     });
   };
 
-  const dateInputOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!setCalendarLocation) return;
-    if (!setSelectedDate) return;
-    try {
-      const typedDate = DateUtil.parse(e.target.value);
-      setSelectedDate(typedDate);
-      setCalendarLocation({ year: typedDate.getFullYear(), month: typedDate.getMonth() + 1 });
-    } catch (err) {
-      // nothing
-    }
-  };
-
   return (
-    <div>
+    <div className="navigator">
       <button onClick={increaseCalendarLocation}>+</button>
       {calendarLocation.year}-{calendarLocation.month}
       <button onClick={decreaseCalendarLocation}>-</button>
-      <Input type="date" onChange={dateInputOnChangeHandler} />
     </div>
   );
 };

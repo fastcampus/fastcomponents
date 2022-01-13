@@ -1,6 +1,7 @@
 import React, { useState, createContext } from 'react';
 import type { CalendarProps, CalendarLocation, CalendarContexts } from '../../types/calendar.interface';
 import MonthCalendar from './month-calendar';
+import Input from './date-input';
 
 export const CalendarContext = createContext<CalendarContexts>({
   selectedDate: new Date(),
@@ -23,6 +24,7 @@ const Calendar = ({ date = new Date() }: CalendarProps) => {
       value={{ selectedDate, setSelectedDate, calendarLocation, setCalendarLocation, isCurrentYearMonth }}
     >
       <div className="fc-calendar">
+        <Input />
         <MonthCalendar year={calendarLocation.year} month={calendarLocation.month} />
       </div>
     </CalendarContext.Provider>
