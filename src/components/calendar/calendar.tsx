@@ -2,22 +2,23 @@ import React, { useState, createContext } from 'react';
 import type { CalendarProps, CalendarLocation, CalendarContexts } from '../../types/calendar.interface';
 import CalendarContents from './calendar-contents';
 import Input from './date-input';
+import { getMonth } from './utils';
 
 export const CalendarContext = createContext<CalendarContexts>({
   selectedDate: new Date(),
   isCurrentYearMonth: true,
-  calendarLocation: { year: new Date().getFullYear(), month: new Date().getMonth() + 1 },
+  calendarLocation: { year: new Date().getFullYear(), month: getMonth(new Date()) },
 });
 
 const Calendar = ({ date = new Date() }: CalendarProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(date);
   const [calendarLocation, setCalendarLocation] = useState<CalendarLocation>({
     year: date.getFullYear(),
-    month: date.getMonth() + 1,
+    month: getMonth(date),
   });
 
   const isCurrentYearMonth =
-    selectedDate.getFullYear() === calendarLocation.year && selectedDate.getMonth() + 1 === calendarLocation.month;
+    selectedDate.getFullYear() === calendarLocation.year && getMonth(selectedDate) === calendarLocation.month;
 
   return (
     <CalendarContext.Provider

@@ -2,28 +2,47 @@ import React from 'react';
 import { DateUtil } from '@day1co/pebbles';
 import WeekCalendar from './week-calendar';
 import type { MonthCalendarProps } from 'src/types/calendar.interface';
+import { DAY_COUNT_OF_ONE_WEEK } from './utils';
 
 const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
   const date = new Date(`${year}-${month}-01`);
-  const leftPad = date.getDay();
-  const monthLastDate = DateUtil.endOfMonth(date).getDate();
-  const secondWeekStartDate = 8 - leftPad;
-  const dateCnt = 7 - leftPad;
-  const weekCnt = Math.floor((monthLastDate - secondWeekStartDate) / 7) + 2;
+  const firstWeekLeftPad = date.getDay();
+  const notFirstWeekLeftPad = 0;
 
-  const WeekCalendarList = new Array(weekCnt).fill(0).map((_, idx) => {
-    const startDate = secondWeekStartDate + 7 * (idx - 1);
-    const nextWeekStartDate = startDate + 7;
+  const monthLastDate = DateUtil.endOfMonth(date).getDate();
+  const secondWeekStartDate = DAY_COUNT_OF_ONE_WEEK + 1 - firstWeekLeftPad;
+  const firstWeekDateCnt = DAY_COUNT_OF_ONE_WEEK - firstWeekLeftPad;
+  const weekCnt = Math.ceil((monthLastDate + firstWeekLeftPad) / DAY_COUNT_OF_ONE_WEEK);
+
+  const WeekCalendarList = new Array(weekCnt).fill(0).map((_, weekOrder) => {
+    const startDate = secondWeekStartDate + DAY_COUNT_OF_ONE_WEEK * (weekOrder - 1);
+    const nextWeekStartDate = startDate + DAY_COUNT_OF_ONE_WEEK;
     const isLastWeek = nextWeekStartDate > monthLastDate;
     const lastWeekDateCnt = monthLastDate - startDate + 1;
 
-    if (idx === 0) {
-      return <WeekCalendar key={`${year}-${month}`} startDate={1} cnt={dateCnt} leftPad={leftPad} />;
+    if (weekOrder === 0) {
+      return (
+        <WeekCalendar key={`${year}-${month}`} startDate={1} dateCnt={firstWeekDateCnt} leftPad={firstWeekLeftPad} />
+      );
     }
     if (isLastWeek) {
-      return <WeekCalendar key={`${year}-${month}-${idx}`} startDate={startDate} cnt={lastWeekDateCnt} leftPad={0} />;
+      return (
+        <WeekCalendar
+          key={`${year}-${month}-${weekOrder}`}
+          startDate={startDate}
+          dateCnt={lastWeekDateCnt}
+          leftPad={notFirstWeekLeftPad}
+        />
+      );
     }
-    return <WeekCalendar key={`${year}-${month}-${idx}`} startDate={startDate} cnt={7} leftPad={0} />;
+    return (
+      <WeekCalendar
+        key={`${year}-${month}-${weekOrder}`}
+        startDate={startDate}
+        dateCnt={7}
+        leftPad={notFirstWeekLeftPad}
+      />
+    );
   });
   return <div className="month-calendar">{WeekCalendarList}</div>;
 };

@@ -1,47 +1,26 @@
 import React, { useContext } from 'react';
 import { CalendarContext } from './calendar';
+import { getPrevMonthLocation, getNextMonthLocation } from './utils';
 
 const navigator = () => {
   const { calendarLocation, setCalendarLocation } = useContext(CalendarContext);
   const increaseCalendarLocation = () => {
     if (!setCalendarLocation) return;
-    setCalendarLocation((state) => {
-      if (state.month === 12) {
-        return {
-          year: state.year + 1,
-          month: 1,
-        };
-      }
-      return {
-        ...state,
-        month: state.month + 1,
-      };
-    });
+    setCalendarLocation((state) => getNextMonthLocation(state));
   };
 
   const decreaseCalendarLocation = () => {
     if (!setCalendarLocation) return;
-    setCalendarLocation((state) => {
-      if (state.month === 1) {
-        return {
-          year: state.year - 1,
-          month: 12,
-        };
-      }
-      return {
-        ...state,
-        month: state.month - 1,
-      };
-    });
+    setCalendarLocation((state) => getPrevMonthLocation(state));
   };
 
   return (
     <div className="navigator">
-      <button onClick={increaseCalendarLocation}>+</button>
+      <button onClick={decreaseCalendarLocation}>-</button>
       <div>
         {calendarLocation.year}-{calendarLocation.month}
       </div>
-      <button onClick={decreaseCalendarLocation}>-</button>
+      <button onClick={increaseCalendarLocation}>+</button>
     </div>
   );
 };
