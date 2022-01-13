@@ -9,7 +9,7 @@ export interface MonthCalendarProps {
 
 export interface WeekCalendarProps {
   startDate: number;
-  cnt: number;
+  dateCnt: number;
   leftPad: number;
 }
 

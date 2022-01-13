@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { DateUtil } from '@day1co/pebbles';
 import Input from '../input';
 import { CalendarContext } from './calendar';
+import { getMonth } from './utils';
 
 const DateInput = () => {
   const { setCalendarLocation, setSelectedDate } = useContext(CalendarContext);
@@ -11,7 +12,7 @@ const DateInput = () => {
     try {
       const typedDate = DateUtil.parse(e.target.value);
       setSelectedDate(typedDate);
-      setCalendarLocation({ year: typedDate.getFullYear(), month: typedDate.getMonth() + 1 });
+      setCalendarLocation({ year: typedDate.getFullYear(), month: getMonth(typedDate) });
     } catch (err) {
       // nothing
     }
