@@ -6,7 +6,20 @@ const Calendar = () => {
   return (
     <div
       css={css`
+        display: flex;
         .fc-calendar {
+          .calendar-contents {
+            border: 0.3rem solid black;
+          }
+          .navigator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
+            & > div {
+              margin: 0 0.5rem;
+            }
+          }
           .week-calendar {
             display: flex;
           }
