@@ -1,71 +1,29 @@
 import React, { useState, createContext } from 'react';
-import { DateUtil } from '@day1co/pebbles';
-import type { CalendarProps } from '../../types/calendar.interface';
-import Input from '../input';
+import type { CalendarProps, CalendarLocation, CalendarContexts } from '../../types/calendar.interface';
 import MonthCalendar from './month-calendar';
 
-export const CalendarContext = createContext({ selectedDate: new Date(), isCurrentYearMonth: true });
+export const CalendarContext = createContext<CalendarContexts>({
+  selectedDate: new Date(),
+  isCurrentYearMonth: true,
+  calendarLocation: { year: new Date().getFullYear(), month: new Date().getMonth() + 1 },
+});
 
 const Calendar = ({ date = new Date() }: CalendarProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(date);
-  const [CalendarLocation, setCalendarLocation] = useState<{ year: number; month: number }>({
+  const [calendarLocation, setCalendarLocation] = useState<CalendarLocation>({
     year: date.getFullYear(),
     month: date.getMonth() + 1,
   });
 
-  const increaseCalendarLocation = () => {
-    setCalendarLocation((state) => {
-      if (state.month === 12) {
-        return {
-          year: state.year + 1,
-          month: 1,
-        };
-      }
-      return {
-        ...state,
-        month: state.month + 1,
-      };
-    });
-  };
-
-  const decreaseCalendarLocation = () => {
-    setCalendarLocation((state) => {
-      if (state.month === 1) {
-        return {
-          year: state.year - 1,
-          month: 12,
-        };
-      }
-      return {
-        ...state,
-        month: state.month - 1,
-      };
-    });
-  };
-
-  const dateInputOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    try {
-      const typedDate = DateUtil.parse(e.target.value);
-      setSelectedDate(typedDate);
-      setCalendarLocation({ year: typedDate.getFullYear(), month: typedDate.getMonth() + 1 });
-    } catch (err) {
-      // nothing
-    }
-  };
-
   const isCurrentYearMonth =
-    selectedDate.getFullYear() === CalendarLocation.year && selectedDate.getMonth() + 1 === CalendarLocation.month;
+    selectedDate.getFullYear() === calendarLocation.year && selectedDate.getMonth() + 1 === calendarLocation.month;
 
   return (
-    <CalendarContext.Provider value={{ selectedDate, isCurrentYearMonth }}>
+    <CalendarContext.Provider
+      value={{ selectedDate, setSelectedDate, calendarLocation, setCalendarLocation, isCurrentYearMonth }}
+    >
       <div className="fc-calendar">
-        <div>
-          <button onClick={increaseCalendarLocation}>+</button>
-          {CalendarLocation.year}-{CalendarLocation.month}
-          <button onClick={decreaseCalendarLocation}>-</button>
-          <Input type="date" onChange={dateInputOnChangeHandler} />
-        </div>
-        <MonthCalendar year={CalendarLocation.year} month={CalendarLocation.month} />
+        <MonthCalendar year={calendarLocation.year} month={calendarLocation.month} />
       </div>
     </CalendarContext.Provider>
   );

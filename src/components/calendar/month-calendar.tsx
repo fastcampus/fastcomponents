@@ -1,7 +1,8 @@
 import React from 'react';
-import WeekCalendar from './week-calendar';
-import type { MonthCalendarProps } from 'src/types/calendar.interface';
 import { DateUtil } from '@day1co/pebbles';
+import WeekCalendar from './week-calendar';
+import Navigator from './navigator';
+import type { MonthCalendarProps } from 'src/types/calendar.interface';
 
 const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
   const date = new Date(`${year}-${month}-01`);
@@ -27,6 +28,11 @@ const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
       WeekCalendarList.push(<WeekCalendar key={`${year}-${month}-${i}`} startDate={startDate} cnt={7} leftPad={0} />);
     }
   }
-  return <div>{WeekCalendarList}</div>;
+  return (
+    <div>
+      <Navigator />
+      {WeekCalendarList}
+    </div>
+  );
 };
 export default MonthCalendar;
