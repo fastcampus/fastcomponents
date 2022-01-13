@@ -38,7 +38,9 @@ const navigator = () => {
   return (
     <div className="navigator">
       <button onClick={increaseCalendarLocation}>+</button>
-      {calendarLocation.year}-{calendarLocation.month}
+      <div>
+        {calendarLocation.year}-{calendarLocation.month}
+      </div>
       <button onClick={decreaseCalendarLocation}>-</button>
     </div>
   );
