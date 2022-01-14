@@ -26,6 +26,7 @@ const Pagination = () => {
               border: 0.1rem solid black;
               padding: 0.5rem;
               font-size: 2rem;
+              cursor: pointer;
             }
           }
 
