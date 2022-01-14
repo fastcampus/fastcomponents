@@ -27,12 +27,17 @@ import React from 'react';
 import type { RouteObject } from 'react-router-dom';
 import { useRoutes } from 'react-router-dom';
 import HomeLayout from '../../views/home/layout';
+import PagenationLayout from '../../views/pagenation/layout';
 
 const CustomRoutes = () => {
   const routes: RouteObject[] = [
     {
       path: '/home',
       element: <HomeLayout />,
+    },
+    {
+      path: '/pagenation',
+      element: <PagenationLayout />,
     },
   ];
   return useRoutes(routes);
