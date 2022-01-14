@@ -1,5 +1,6 @@
 import React from 'react';
 
 export interface TableProps {
-  children: React.ReactNode;
+  head: React.ReactNode;
+  body: React.ReactNode;
 }
