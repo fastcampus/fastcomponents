@@ -32,6 +32,9 @@ const Pagination = ({ count, limit, range, firstPage = 1, sort = null }: Paginat
   const goToLast = () => {
     setOffset(limit * (lastPage - 1));
   };
+  const goToPage = (page: number) => () => {
+    setOffset(limit * (page - 1));
+  };
 
   return (
     <div className="fc-pagination">
@@ -39,7 +42,7 @@ const Pagination = ({ count, limit, range, firstPage = 1, sort = null }: Paginat
       <button className="prev-btn" onClick={goToPrev}></button>
       <div className="page-number-list">
         {pages.map(({ page, active }) => (
-          <span key={page} className={`${active && 'active'}`}>
+          <span key={page} className={`${active && 'active'}`} onClick={goToPage(page)}>
             {page}
           </span>
         ))}
