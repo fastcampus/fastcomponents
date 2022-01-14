@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import { Pagenation as FCPagenation } from '../../../src';
+import { Pagination as FCPagination } from '../../../src';
 import type { Sort } from '../../../src';
 
-const Pagenation = () => {
+const Pagination = () => {
   const [sort, setSort] = useState<Sort>(null);
   return (
     <div
       css={css`
-        .fc-pagenation {
+        .fc-pagination {
           border: 0.1rem solid black;
           display: flex;
           & > button {
@@ -56,7 +56,7 @@ const Pagenation = () => {
         }
       `}
     >
-      <FCPagenation count={165} limit={10} range={2} sort={sort} />
+      <FCPagination count={165} limit={10} range={2} sort={sort} />
       <button onClick={() => setSort('ASC')}>ASC</button>
       <button onClick={() => setSort('DESC')}>DESC</button>
       <button onClick={() => setSort(null)}>NO SORT</button>
@@ -64,4 +64,4 @@ const Pagenation = () => {
   );
 };
 
-export default Pagenation;
+export default Pagination;

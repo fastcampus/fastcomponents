@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { MiscUtil } from '@day1co/pebbles';
-import { getCurrentOffset, setPagenationQueryString } from './utils';
-import type { PagenationProps } from '../../types/pagenation.interface';
+import { getCurrentOffset, setPaginationQueryString } from './utils';
+import type { PaginationProps } from '../../types/pagination.interface';
 
-const Pagenation = ({ count, limit, range, firstPage = 1, sort = null }: PagenationProps) => {
+const Pagination = ({ count, limit, range, firstPage = 1, sort = null }: PaginationProps) => {
   const [offset, setOffset] = useState(getCurrentOffset());
 
   useEffect(() => {
-    setPagenationQueryString(offset, sort);
+    setPaginationQueryString(offset, sort);
   }, [offset, sort]);
 
   const { lastPage, currentPage, pages } = MiscUtil.getPagination({
@@ -34,7 +34,7 @@ const Pagenation = ({ count, limit, range, firstPage = 1, sort = null }: Pagenat
   };
 
   return (
-    <div className="fc-pagenation">
+    <div className="fc-pagination">
       <button className="first-btn" onClick={goToFirst}></button>
       <button className="prev-btn" onClick={goToPrev}></button>
       <div className="page-number-list">
@@ -50,4 +50,4 @@ const Pagenation = ({ count, limit, range, firstPage = 1, sort = null }: Pagenat
   );
 };
 
-export default Pagenation;
+export default Pagination;
