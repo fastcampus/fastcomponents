@@ -7,18 +7,25 @@ const Sort = () => {
     <div
       css={css`
         .fc-sort {
-          button:first-child {
+          .asc {
             width: 10rem;
             height: 5rem;
             :before {
               content: 'ASC';
             }
           }
-          button:last-child {
+          .desc {
             width: 10rem;
             height: 5rem;
             :before {
               content: 'DESC';
+            }
+          }
+          .none {
+            width: 10rem;
+            height: 5rem;
+            :before {
+              content: 'NONE';
             }
           }
         }
