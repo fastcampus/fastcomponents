@@ -27,12 +27,17 @@ import React from 'react';
 import type { RouteObject } from 'react-router-dom';
 import { useRoutes } from 'react-router-dom';
 import HomeLayout from '../../views/home/layout';
+import PaginationLayout from '../../views/pagination/layout';
 
 const CustomRoutes = () => {
   const routes: RouteObject[] = [
     {
       path: '/home',
       element: <HomeLayout />,
+    },
+    {
+      path: '/pagination',
+      element: <PaginationLayout />,
     },
   ];
   return useRoutes(routes);

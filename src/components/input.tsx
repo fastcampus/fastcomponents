@@ -19,7 +19,7 @@ const Input = ({
   minLength,
 }: InputProps) => (
   <input
-    css={style}
+    style={style}
     className={className}
     defaultValue={defaultValue}
     disabled={disabled}
