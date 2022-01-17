@@ -3,12 +3,12 @@ import { MiscUtil } from '@day1co/pebbles';
 import { getCurrentOffset, setPaginationQueryString } from './utils';
 import type { PaginationProps } from '../../types/pagination.interface';
 
-const Pagination = ({ count, limit, range, firstPage = 1, sort = null }: PaginationProps) => {
+const Pagination = ({ count, limit, range, firstPage = 1 }: PaginationProps) => {
   const [offset, setOffset] = useState(getCurrentOffset());
 
   useEffect(() => {
-    setPaginationQueryString(offset, sort);
-  }, [offset, sort]);
+    setPaginationQueryString(offset);
+  }, [offset]);
 
   const { lastPage, currentPage, pages } = MiscUtil.getPagination({
     count,

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { css } from '@emotion/react';
 import { Pagination as FCPagination } from '../../../src';
-import type { Sort } from '../../../src';
 
 const Pagination = () => {
-  const [sort, setSort] = useState<Sort>(null);
   return (
     <div
       css={css`
@@ -57,10 +55,7 @@ const Pagination = () => {
         }
       `}
     >
-      <FCPagination count={165} limit={10} range={2} sort={sort} />
-      <button onClick={() => setSort('ASC')}>ASC</button>
-      <button onClick={() => setSort('DESC')}>DESC</button>
-      <button onClick={() => setSort(null)}>NO SORT</button>
+      <FCPagination count={165} limit={10} range={2} />
     </div>
   );
 };
