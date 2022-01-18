@@ -16,7 +16,9 @@ const HomeLayout = () => {
       <Checkbox />
       <Radio />
       <Select isOptionUse={false} />
+      <Select isOptionUse={false} multiple={true} />
       <Select isOptionUse={true} />
+      <Select isOptionUse={true} multiple={true} />
     </div>
   );
 };
