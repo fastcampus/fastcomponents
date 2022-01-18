@@ -2,6 +2,7 @@ import React from 'react';
 import InputList from '../../components/input-list';
 import Calendar from '../../components/calendar';
 import Table from '../../components/table';
+import Checkbox from '../../components/checkbox';
 
 const HomeLayout = () => {
   return (
@@ -10,6 +11,7 @@ const HomeLayout = () => {
       <InputList />
       <Calendar />
       <Table />
+      <Checkbox />
     </div>
   );
 };
