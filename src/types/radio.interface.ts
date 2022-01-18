@@ -1,7 +1,8 @@
 import React from 'react';
 
 export interface RadioProps {
-  checked: boolean;
   disabled: boolean;
-  setChecked: (arg0: boolean) => void;
+  name: string;
+  setValue: (arg0: string | number) => void;
+  value: string | number;
 }

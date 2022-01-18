@@ -1,11 +1,9 @@
 import React from 'react';
 import type { RadioProps } from '../../types/radio.interface';
 
-const Radio = ({ checked, disabled, setChecked }: RadioProps) => {
+const Radio = ({ name, disabled, value, setValue }: RadioProps) => {
   return (
-    <label className={`fc-radio ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''}`}>
-      <input type="radio" checked={checked} disabled={disabled} onChange={(e) => setChecked(e.target.checked)} />
-    </label>
+    <input type="radio" name={name} value={value} disabled={disabled} onChange={(e) => setValue(e.target.value)} />
   );
 };
 
