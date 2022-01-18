@@ -8,6 +8,7 @@ export interface Option {
 
 export interface SelectProps {
   options: Option[];
-  setValue: (args0: Value) => void;
+  setValue: (args0: Value[]) => void;
   isOptionUse?: boolean;
+  multiple?: boolean;
 }
