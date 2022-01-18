@@ -27,8 +27,25 @@ const Radio = () => {
       </h1>
       <div
         css={css`
+          & > div {
+            display: flex;
+            margin: 1rem;
+          }
           .fc-radio {
-            display: inline-block;
+            display: flex;
+            label {
+              display: inline-block;
+              background-color: red;
+              width: 2rem;
+              height: 2rem;
+            }
+            input:checked + label {
+              background-color: green;
+            }
+            input {
+              width: 0;
+              height: 0;
+            }
           }
         `}
       >

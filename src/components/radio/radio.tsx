@@ -3,7 +3,17 @@ import type { RadioProps } from '../../types/radio.interface';
 
 const Radio = ({ name, disabled, value, setValue }: RadioProps) => {
   return (
-    <input type="radio" name={name} value={value} disabled={disabled} onChange={(e) => setValue(e.target.value)} />
+    <div className="fc-radio">
+      <input
+        id={name + value}
+        type="radio"
+        name={name}
+        value={value}
+        disabled={disabled}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <label className="label" htmlFor={name + value}></label>
+    </div>
   );
 };
 
