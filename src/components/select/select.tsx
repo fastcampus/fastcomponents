@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import type { Value, Option, SelectProps } from '../../types/select.interface';
 
-const Select = ({ options, setValue, isOptionUse = false }: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<Value>(options[0].innerHTML);
+const Select = ({ options, setValue, isOptionUse = false, multiple = false }: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].innerHTML]);
   const [isOptionVisible, setIsOptionVisible] = useState(false);
+  const setValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (multiple) {
+      const options = e.target.options;
+      const selectedValues = [...options]
+        .filter((option) => option.selected)
+        .map((option) => {
+          return option.value;
+        });
+
+      setSelectedValue(selectedValues);
+      setValue(selectedValues);
+      return;
+    }
+    setValue([e.target.value]);
+  };
   if (isOptionUse) {
     return (
-      <select className="fc-select" onChange={(e) => setValue(e.target.value)}>
+      <select className="fc-select" onChange={setValueHandler} multiple={multiple}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.innerHTML}
@@ -17,8 +32,8 @@ const Select = ({ options, setValue, isOptionUse = false }: SelectProps) => {
   }
 
   const optionClickHandler = (option: Option) => () => {
-    setValue(option.value);
-    setSelectedValue(option.innerHTML);
+    // setValue(option.value);
+    setSelectedValue((state) => [...state, option.innerHTML]);
     setIsOptionVisible(false);
   };
 

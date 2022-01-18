@@ -4,7 +4,7 @@ import type { Option, Value } from '../../../src/types/select.interface';
 import { Select as FCSelect } from '../../../src';
 
 const Select = ({ isOptionUse }: { isOptionUse: boolean }) => {
-  const [selectedOption, setSelectedOption] = useState<Value>('');
+  const [selectedOption, setSelectedOption] = useState<Value[]>([]);
   const optionList: Option[] = [
     {
       value: 'a',
@@ -45,7 +45,7 @@ const Select = ({ isOptionUse }: { isOptionUse: boolean }) => {
         `}
       >
         <div>선택된 값 : {selectedOption}</div>
-        <FCSelect options={optionList} setValue={(value) => setSelectedOption(value)} isOptionUse={isOptionUse} />
+        <FCSelect options={optionList} setValue={(values) => setSelectedOption(values)} isOptionUse={isOptionUse} />
       </div>
     </>
   );
