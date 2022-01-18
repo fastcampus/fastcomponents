@@ -4,6 +4,7 @@ import Calendar from '../../components/calendar';
 import Table from '../../components/table';
 import Checkbox from '../../components/checkbox';
 import Radio from '../../components/radio';
+import Select from '../../components/select';
 
 const HomeLayout = () => {
   return (
@@ -14,6 +15,7 @@ const HomeLayout = () => {
       <Table />
       <Checkbox />
       <Radio />
+      <Select />
     </div>
   );
 };
