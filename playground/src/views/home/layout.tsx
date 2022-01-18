@@ -3,6 +3,7 @@ import InputList from '../../components/input-list';
 import Calendar from '../../components/calendar';
 import Table from '../../components/table';
 import Checkbox from '../../components/checkbox';
+import Radio from '../../components/radio';
 
 const HomeLayout = () => {
   return (
@@ -12,6 +13,7 @@ const HomeLayout = () => {
       <Calendar />
       <Table />
       <Checkbox />
+      <Radio />
     </div>
   );
 };

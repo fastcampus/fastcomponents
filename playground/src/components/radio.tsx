@@ -3,7 +3,20 @@ import { css } from '@emotion/react';
 import { Radio as FCRadio } from '../../../src';
 
 const Radio = () => {
-  const [checked, setChecked] = useState(false);
+  const [radioList, setRadioList] = useState([
+    {
+      checked: false,
+      label: '항목 1',
+    },
+    {
+      checked: false,
+      label: '항목 2',
+    },
+    {
+      checked: false,
+      label: '항목 3',
+    },
+  ]);
   return (
     <>
       <h1
@@ -17,12 +30,6 @@ const Radio = () => {
         css={css`
           .fc-radio {
             display: inline-block;
-            width: 10rem;
-            height: 10rem;
-            input {
-              width: 0rem;
-              height: 0rem;
-            }
             &.checked {
               background-color: green;
             }
@@ -30,7 +37,27 @@ const Radio = () => {
           }
         `}
       >
-        <FCRadio checked={checked} disabled={false} setChecked={(value: boolean) => setChecked(value)} />
+        {radioList.map((radio, idx) => {
+          return (
+            <div key={radio.label}>
+              <FCRadio
+                checked={radio.checked}
+                disabled={false}
+                setChecked={(value: boolean) =>
+                  setRadioList((state) => {
+                    const newState = state.map((v) => ({
+                      ...v,
+                      checked: false,
+                    }));
+                    newState[idx].checked = value;
+                    return [...newState];
+                  })
+                }
+              />
+              <span>{radio.label}</span>
+            </div>
+          );
+        })}
       </div>
     </>
   );
