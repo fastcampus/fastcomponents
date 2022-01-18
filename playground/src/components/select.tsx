@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import type { Option } from '../../../src/types/select.interface';
+import type { Option, Value } from '../../../src/types/select.interface';
 import { Select as FCSelect } from '../../../src';
 
-const Select = () => {
-  const [selectedOption, setSelectedOption] = useState('');
+const Select = ({ isOptionUse }: { isOptionUse: boolean }) => {
+  const [selectedOption, setSelectedOption] = useState<Value>('');
   const optionList: Option[] = [
     {
       value: 'a',
@@ -28,11 +28,24 @@ const Select = () => {
         css={css`
           .fc-select {
             border: 0.2rem solid black;
+            .options {
+              background-color: gray;
+              padding: 1rem;
+              border: 0.2rem solid gray;
+              top: -2rem;
+              & > div {
+                font-size: 2rem;
+                margin: 0.5rem 0;
+                &:hover {
+                  color: white;
+                }
+              }
+            }
           }
         `}
       >
         <div>선택된 값 : {selectedOption}</div>
-        <FCSelect options={optionList} setValue={(value) => setSelectedOption(value)} />
+        <FCSelect options={optionList} setValue={(value) => setSelectedOption(value)} isOptionUse={isOptionUse} />
       </div>
     </>
   );
