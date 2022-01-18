@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Value, Option, SelectProps } from '../../types/select.interface';
 
-const Select = ({ options, setValue, isOptionUse = false, multiple = false }: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].innerHTML]);
+const Select = ({ options, setValue, isOptionUse = false, multiple = true }: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].value]);
   const [isOptionVisible, setIsOptionVisible] = useState(false);
+
+  useEffect(() => {
+    setValue(selectedValue);
+  }, [selectedValue]);
+
   const setValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
       const options = e.target.options;
@@ -14,11 +19,27 @@ const Select = ({ options, setValue, isOptionUse = false, multiple = false }: Se
         });
 
       setSelectedValue(selectedValues);
-      setValue(selectedValues);
       return;
     }
-    setValue([e.target.value]);
+    setSelectedValue([e.target.value]);
   };
+
+  const optionClickHandler = (option: Option) => () => {
+    if (multiple) {
+      setSelectedValue((state) => {
+        const optionIdx = state.indexOf(option.value);
+        if (optionIdx !== -1) {
+          return [...state.slice(0, optionIdx), ...state.slice(optionIdx + 1, state.length)];
+        }
+        return [...state, option.value];
+      });
+      return;
+    }
+    setSelectedValue([option.value]);
+
+    setIsOptionVisible(false);
+  };
+
   if (isOptionUse) {
     return (
       <select className="fc-select" onChange={setValueHandler} multiple={multiple}>
@@ -31,11 +52,23 @@ const Select = ({ options, setValue, isOptionUse = false, multiple = false }: Se
     );
   }
 
-  const optionClickHandler = (option: Option) => () => {
-    // setValue(option.value);
-    setSelectedValue((state) => [...state, option.innerHTML]);
-    setIsOptionVisible(false);
-  };
+  if (multiple) {
+    return (
+      <div className="fc-select">
+        <div className="preview">
+          {options.map((option) => (
+            <div
+              key={option.value}
+              onClick={optionClickHandler(option)}
+              className={selectedValue.includes(option.value) ? 'selected' : ''}
+            >
+              {option.innerHTML}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fc-select">

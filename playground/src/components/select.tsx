@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import type { Option, Value } from '../../../src/types/select.interface';
 import { Select as FCSelect } from '../../../src';
 
-const Select = ({ isOptionUse }: { isOptionUse: boolean }) => {
+const Select = ({ isOptionUse, multiple = false }: { isOptionUse: boolean; multiple?: boolean }) => {
   const [selectedOption, setSelectedOption] = useState<Value[]>([]);
   const optionList: Option[] = [
     {
@@ -28,6 +28,9 @@ const Select = ({ isOptionUse }: { isOptionUse: boolean }) => {
         css={css`
           .fc-select {
             border: 0.2rem solid black;
+            .selected {
+              background-color: rgba(0, 255, 0, 0.2);
+            }
             .options {
               background-color: gray;
               padding: 1rem;
@@ -45,7 +48,12 @@ const Select = ({ isOptionUse }: { isOptionUse: boolean }) => {
         `}
       >
         <div>선택된 값 : {selectedOption}</div>
-        <FCSelect options={optionList} setValue={(values) => setSelectedOption(values)} isOptionUse={isOptionUse} />
+        <FCSelect
+          options={optionList}
+          setValue={(values) => setSelectedOption(values)}
+          isOptionUse={isOptionUse}
+          multiple={multiple}
+        />
       </div>
     </>
   );
