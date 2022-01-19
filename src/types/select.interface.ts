@@ -10,6 +10,8 @@ export interface SelectProps {
   options: Option[];
   setValue: (args0: Value[]) => void;
   isOptionUse?: boolean;
+  isAllSelect?: boolean;
+  setIsAllSelect: (args0: boolean) => void;
   multiple?: boolean;
   size?: number;
 }
