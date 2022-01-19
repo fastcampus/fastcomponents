@@ -6,19 +6,28 @@ export interface Option {
   innerHTML: string;
 }
 
-export interface CustomSelectProps {
+export interface CustomSelectBlockProps {
   customOptionHeight: number;
   size: number;
   isOptionVisible: boolean;
 }
 
+export interface CustomSelectProps {
+  selectedValue: Value[];
+  setSelectedValue: React.Dispatch<React.SetStateAction<Value[]>>;
+  options: Option[];
+  size: number;
+  multiple: boolean;
+}
+
 export interface SelectUseOptionProps {
-  setValueHandler: (args0: React.ChangeEvent<HTMLSelectElement>) => void;
+  setSelectedValue: React.Dispatch<React.SetStateAction<Value[]>>;
   multiple: boolean;
   options: Option[];
   isAllSelect: boolean;
   size: number;
 }
+
 export interface SelectProps {
   options: Option[];
   setValue: (args0: Value[]) => void;
