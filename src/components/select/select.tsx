@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import type { Value, Option, SelectProps } from '../../types/select.interface';
+import type { Value, Option, CustomSelectProps, SelectProps } from '../../types/select.interface';
 import styled from '@emotion/styled';
+import useElementHeight from './hooks/useElementHeight';
+import SelectUseOption from './select-use-option';
 
-interface CustomSelectProp {
-  customOptionHeight: number;
-  size: number;
-  isOptionVisible: boolean;
-}
-const CustomSelect = styled.div<CustomSelectProp>`
+const CustomSelect = styled.div<CustomSelectProps>`
   position: relative;
   & > .options {
     opacity: ${({ isOptionVisible }) => (isOptionVisible ? '1' : '0')};
@@ -48,27 +45,20 @@ const Select = ({
 }: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].value]);
   const [isOptionVisible, setIsOptionVisible] = useState(false);
-  const [customOptionHeight, setCustomOptionHeight] = useState(0);
-  const customOptionsRef = useRef<HTMLDivElement>(null);
+  const [customOptionHeight, customOptionRef] = useElementHeight();
+  const isAllSelected = options.length === selectedValue.length;
 
   useEffect(() => {
     setValue(selectedValue);
-    setIsAllSelect(options.length === selectedValue.length);
+    setIsAllSelect(isAllSelected);
   }, [selectedValue]);
-
-  useEffect(() => {
-    if (customOptionsRef.current) {
-      const optionDOM = customOptionsRef.current?.children[0] as HTMLDivElement;
-      setCustomOptionHeight(optionDOM.offsetHeight);
-    }
-  }, [customOptionsRef.current]);
 
   useEffect(() => {
     if (isAllSelect) {
       setSelectedValue([...options.map((option) => option.value)]);
       return;
     }
-    if (options.length === selectedValue.length) {
+    if (isAllSelected) {
       setSelectedValue([]);
     }
   }, [isAllSelect]);
@@ -106,19 +96,18 @@ const Select = ({
       return;
     }
     setSelectedValue([option.value]);
-
     setIsOptionVisible(false);
   };
 
   if (isOptionUse) {
     return (
-      <select className="fc-select" onChange={setValueHandler} multiple={multiple} size={size}>
-        {options.map((option) => (
-          <option key={option.value} value={option.value} selected={multiple && isAllSelect}>
-            {option.innerHTML}
-          </option>
-        ))}
-      </select>
+      <SelectUseOption
+        setValueHandler={setValueHandler}
+        multiple={multiple}
+        options={options}
+        isAllSelect={isAllSelect}
+        size={size}
+      />
     );
   }
 
@@ -129,12 +118,13 @@ const Select = ({
       </div>
 
       <CustomSelect customOptionHeight={customOptionHeight} size={size} isOptionVisible={isOptionVisible}>
-        <div className="options" ref={customOptionsRef}>
-          {options.map((option) => (
+        <div className="options">
+          {options.map((option, idx) => (
             <div
               key={option.value}
               onClick={optionClickHandler(option)}
               className={selectedValue.includes(option.value) ? 'selected' : ''}
+              ref={idx === 0 ? customOptionRef : null}
             >
               {option.innerHTML}
             </div>

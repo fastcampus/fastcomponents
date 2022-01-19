@@ -6,6 +6,19 @@ export interface Option {
   innerHTML: string;
 }
 
+export interface CustomSelectProps {
+  customOptionHeight: number;
+  size: number;
+  isOptionVisible: boolean;
+}
+
+export interface SelectUseOptionProps {
+  setValueHandler: (args0: React.ChangeEvent<HTMLSelectElement>) => void;
+  multiple: boolean;
+  options: Option[];
+  isAllSelect: boolean;
+  size: number;
+}
 export interface SelectProps {
   options: Option[];
   setValue: (args0: Value[]) => void;
