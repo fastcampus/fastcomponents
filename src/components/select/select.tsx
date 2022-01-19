@@ -16,7 +16,6 @@ const CustomSelect = styled.div<CustomSelectProp>`
     position: absolute;
     ${({ customOptionHeight, size }) => {
       if (size) {
-        console.log('customOptionHeightin sty :', customOptionHeight);
         return `
           overflow: scroll;
           height: ${customOptionHeight * size}px;
@@ -38,7 +37,15 @@ const CustomSelect = styled.div<CustomSelectProp>`
   }
 `;
 
-const Select = ({ options, setValue, isOptionUse = false, multiple = true, size = 0 }: SelectProps) => {
+const Select = ({
+  options,
+  setValue,
+  isOptionUse = false,
+  multiple = true,
+  size = 0,
+  isAllSelect = false,
+  setIsAllSelect,
+}: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].value]);
   const [isOptionVisible, setIsOptionVisible] = useState(false);
   const [customOptionHeight, setCustomOptionHeight] = useState(0);
@@ -46,6 +53,11 @@ const Select = ({ options, setValue, isOptionUse = false, multiple = true, size 
 
   useEffect(() => {
     setValue(selectedValue);
+    if (options.length === selectedValue.length) {
+      setIsAllSelect(true);
+    } else {
+      setIsAllSelect(false);
+    }
   }, [selectedValue]);
 
   useEffect(() => {
@@ -54,6 +66,16 @@ const Select = ({ options, setValue, isOptionUse = false, multiple = true, size 
       setCustomOptionHeight(optionDOM.offsetHeight);
     }
   }, [customOptionsRef.current]);
+
+  useEffect(() => {
+    if (isAllSelect) {
+      setSelectedValue([...options.map((option) => option.value)]);
+      return;
+    }
+    if (options.length === selectedValue.length) {
+      setSelectedValue([]);
+    }
+  }, [isAllSelect]);
 
   const previewClickHandler = () => {
     setIsOptionVisible((state) => {

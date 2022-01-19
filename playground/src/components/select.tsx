@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import type { Option, Value } from '../../../src/types/select.interface';
 import { Select as FCSelect } from '../../../src';
+import { Checkbox as FCCheckbox } from '../../../src';
 
 const Select = ({
   isOptionUse,
@@ -13,6 +14,7 @@ const Select = ({
   size?: number;
 }) => {
   const [selectedOption, setSelectedOption] = useState<Value[]>([]);
+  const [isAllSelect, setIsAllSelect] = useState<boolean>(false);
   const optionList: Option[] = [
     {
       value: 'a',
@@ -93,12 +95,15 @@ const Select = ({
         `}
       >
         <div>선택된 값 : {selectedOption}</div>
+        {multiple && <FCCheckbox checked={isAllSelect} setChecked={setIsAllSelect} disabled={false} />}
         <FCSelect
           options={optionList}
           setValue={(values) => setSelectedOption(values)}
           isOptionUse={isOptionUse}
           multiple={multiple}
           size={size}
+          isAllSelect={isAllSelect}
+          setIsAllSelect={setIsAllSelect}
         />
       </div>
     </>
