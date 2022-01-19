@@ -11,4 +11,5 @@ export interface SelectProps {
   setValue: (args0: Value[]) => void;
   isOptionUse?: boolean;
   multiple?: boolean;
+  size?: number;
 }

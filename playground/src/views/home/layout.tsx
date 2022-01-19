@@ -15,10 +15,20 @@ const HomeLayout = () => {
       <Table />
       <Checkbox />
       <Radio />
-      <Select isOptionUse={false} />
-      <Select isOptionUse={false} multiple={true} />
-      <Select isOptionUse={true} />
-      <Select isOptionUse={true} multiple={true} />
+      <div>
+        <h1 style={{ fontSize: '4rem' }}>Select size default</h1>
+        <Select isOptionUse={false} />
+        <Select isOptionUse={false} multiple={true} />
+        <Select isOptionUse={true} />
+        <Select isOptionUse={true} multiple={true} />
+      </div>
+      <div>
+        <h1 style={{ fontSize: '4rem' }}>Select size=7 </h1>
+        <Select isOptionUse={false} size={7} />
+        <Select isOptionUse={false} multiple={true} size={7} />
+        <Select isOptionUse={true} size={7} />
+        <Select isOptionUse={true} multiple={true} size={7} />
+      </div>
     </div>
   );
 };
