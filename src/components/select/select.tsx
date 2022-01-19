@@ -1,13 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import type { Value, Option, SelectProps } from '../../types/select.interface';
+import styled from '@emotion/styled';
 
-const Select = ({ options, setValue, isOptionUse = false, multiple = true }: SelectProps) => {
+interface CustomSelectProp {
+  customOptionHeight: number;
+  size: number;
+  isOptionVisible: boolean;
+}
+const CustomSelect = styled.div<CustomSelectProp>`
+  position: relative;
+  & > .options {
+    opacity: ${({ isOptionVisible }) => (isOptionVisible ? '1' : '0')};
+    z-index: ${({ isOptionVisible }) => (isOptionVisible ? '1' : '-1')};
+
+    position: absolute;
+    ${({ customOptionHeight, size }) => {
+      if (size) {
+        console.log('customOptionHeightin sty :', customOptionHeight);
+        return `
+          overflow: scroll;
+          height: ${customOptionHeight * size}px;
+        `;
+      }
+      return '';
+    }}
+  }
+
+  & > .wrapper {
+    display: ${({ isOptionVisible }) => (isOptionVisible ? 'block' : 'none')};
+    position: fixed;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+`;
+
+const Select = ({ options, setValue, isOptionUse = false, multiple = true, size = 0 }: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].value]);
   const [isOptionVisible, setIsOptionVisible] = useState(false);
+  const [customOptionHeight, setCustomOptionHeight] = useState(0);
+  const customOptionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setValue(selectedValue);
   }, [selectedValue]);
+
+  useEffect(() => {
+    if (customOptionsRef.current) {
+      const optionDOM = customOptionsRef.current?.children[0] as HTMLDivElement;
+      setCustomOptionHeight(optionDOM.offsetHeight);
+    }
+  }, [customOptionsRef.current]);
+
+  const previewClickHandler = () => {
+    setIsOptionVisible((state) => {
+      return !state;
+    });
+  };
 
   const setValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
@@ -42,7 +94,7 @@ const Select = ({ options, setValue, isOptionUse = false, multiple = true }: Sel
 
   if (isOptionUse) {
     return (
-      <select className="fc-select" onChange={setValueHandler} multiple={multiple}>
+      <select className="fc-select" onChange={setValueHandler} multiple={multiple} size={size}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.innerHTML}
@@ -52,10 +104,14 @@ const Select = ({ options, setValue, isOptionUse = false, multiple = true }: Sel
     );
   }
 
-  if (multiple) {
-    return (
-      <div className="fc-select">
-        <div className="preview">
+  return (
+    <div className="fc-select">
+      <div className="preview" onClick={previewClickHandler}>
+        {selectedValue}
+      </div>
+
+      <CustomSelect customOptionHeight={customOptionHeight} size={size} isOptionVisible={isOptionVisible}>
+        <div className="options" ref={customOptionsRef}>
           {options.map((option) => (
             <div
               key={option.value}
@@ -66,45 +122,13 @@ const Select = ({ options, setValue, isOptionUse = false, multiple = true }: Sel
             </div>
           ))}
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="fc-select">
-      <div
-        className="preview"
-        onClick={() => {
-          setIsOptionVisible((state) => {
-            return !state;
-          });
-        }}
-      >
-        {selectedValue}
-      </div>
-      {isOptionVisible && (
-        <div style={{ position: 'relative' }}>
-          <div className="options" style={{ position: 'absolute', zIndex: 1 }}>
-            {options.map((option) => (
-              <div key={option.value} onClick={optionClickHandler(option)}>
-                {option.innerHTML}
-              </div>
-            ))}
-          </div>
-          <div
-            className="wrapper"
-            style={{
-              width: '100vw',
-              height: '100vh',
-              position: 'fixed',
-              top: '0',
-              left: '0',
-              zIndex: 0,
-            }}
-            onClick={() => setIsOptionVisible(false)}
-          ></div>
-        </div>
-      )}
+        <div
+          className="wrapper"
+          onClick={() => {
+            setIsOptionVisible(false);
+          }}
+        ></div>
+      </CustomSelect>
     </div>
   );
 };
