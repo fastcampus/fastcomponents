@@ -80,12 +80,11 @@ const Select = ({
             }
             .options {
               background-color: gray;
-              padding: 1rem;
+              padding: 0 1rem;
               border: 0.2rem solid gray;
               top: -2rem;
               & > div {
                 font-size: 2rem;
-                margin: 0.5rem 0;
                 &:hover {
                   color: white;
                 }
