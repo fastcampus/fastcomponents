@@ -53,11 +53,7 @@ const Select = ({
 
   useEffect(() => {
     setValue(selectedValue);
-    if (options.length === selectedValue.length) {
-      setIsAllSelect(true);
-    } else {
-      setIsAllSelect(false);
-    }
+    setIsAllSelect(options.length === selectedValue.length);
   }, [selectedValue]);
 
   useEffect(() => {
@@ -118,7 +114,7 @@ const Select = ({
     return (
       <select className="fc-select" onChange={setValueHandler} multiple={multiple} size={size}>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.value} value={option.value} selected={multiple && isAllSelect}>
             {option.innerHTML}
           </option>
         ))}
