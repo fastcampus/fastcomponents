@@ -5,11 +5,11 @@ import { Select as FCSelect } from '../../../src';
 import { Checkbox as FCCheckbox } from '../../../src';
 
 const Select = ({
-  isOptionUse,
+  nativeSelect,
   multiple = false,
   size = 0,
 }: {
-  isOptionUse: boolean;
+  nativeSelect: boolean;
   multiple?: boolean;
   size?: number;
 }) => {
@@ -18,45 +18,45 @@ const Select = ({
   const optionList: Option[] = [
     {
       value: 'a',
-      innerHTML: 'a 선택하기',
+      label: 'a 선택하기',
     },
     {
       value: 2,
-      innerHTML: '2 선택하기',
+      label: '2 선택하기',
     },
 
     {
       value: 3,
-      innerHTML: '3 선택하기',
+      label: '3 선택하기',
     },
 
     {
       value: 4,
-      innerHTML: '4 선택하기',
+      label: '4 선택하기',
     },
     {
       value: 5,
-      innerHTML: '5 선택하기',
+      label: '5 선택하기',
     },
     {
       value: 6,
-      innerHTML: '6 선택하기',
+      label: '6 선택하기',
     },
     {
       value: 7,
-      innerHTML: '7 선택하기',
+      label: '7 선택하기',
     },
     {
       value: 8,
-      innerHTML: '8 선택하기',
+      label: '8 선택하기',
     },
     {
       value: 9,
-      innerHTML: '9 선택하기',
+      label: '9 선택하기',
     },
     {
       value: 10,
-      innerHTML: '10 선택하기',
+      label: '10 선택하기',
     },
   ];
   return (
@@ -98,11 +98,11 @@ const Select = ({
         <FCSelect
           options={optionList}
           setValue={(values) => setSelectedOption(values)}
-          isOptionUse={isOptionUse}
+          nativeSelect={nativeSelect}
           multiple={multiple}
           size={size}
-          isAllSelect={isAllSelect}
-          setIsAllSelect={setIsAllSelect}
+          selectAll={isAllSelect}
+          setSelectAll={setIsAllSelect}
         />
       </div>
     </>

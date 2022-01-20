@@ -17,17 +17,17 @@ const HomeLayout = () => {
       <Radio />
       <div>
         <h1 style={{ fontSize: '4rem' }}>Select size default</h1>
-        <Select isOptionUse={false} />
-        <Select isOptionUse={false} multiple={true} />
-        <Select isOptionUse={true} />
-        <Select isOptionUse={true} multiple={true} />
+        <Select nativeSelect={false} />
+        <Select nativeSelect={false} multiple={true} />
+        <Select nativeSelect={true} />
+        <Select nativeSelect={true} multiple={true} />
       </div>
       <div>
         <h1 style={{ fontSize: '4rem' }}>Select size=7 </h1>
-        <Select isOptionUse={false} size={7} />
-        <Select isOptionUse={false} multiple={true} size={7} />
-        <Select isOptionUse={true} size={7} />
-        <Select isOptionUse={true} multiple={true} size={7} />
+        <Select nativeSelect={false} size={7} />
+        <Select nativeSelect={false} multiple={true} size={7} />
+        <Select nativeSelect={true} size={7} />
+        <Select nativeSelect={true} multiple={true} size={7} />
       </div>
     </div>
   );

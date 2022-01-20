@@ -34,7 +34,6 @@ const CustomSelectBlock = styled.div<CustomSelectBlockProps>`
     z-index: 0;
     width: 100vw;
     height: 100vh;
-    position: fixed;
     top: 0;
     left: 0;
   }
@@ -51,7 +50,8 @@ const CustomSelect = ({ selectedValue, setSelectedValue, options, size, multiple
       setSelectedValue((state) => {
         const optionIdx = state.indexOf(option.value);
         if (optionIdx !== -1) {
-          return [...state.slice(0, optionIdx), ...state.slice(optionIdx + 1, state.length)];
+          state.splice(optionIdx, 1);
+          return [...state];
         }
         return [...state, option.value];
       });
@@ -76,7 +76,7 @@ const CustomSelect = ({ selectedValue, setSelectedValue, options, size, multiple
               className={selectedValue.includes(option.value) ? 'selected' : ''}
               ref={idx === 0 ? customOptionRef : null}
             >
-              {option.innerHTML}
+              {option.label}
             </div>
           ))}
         </div>

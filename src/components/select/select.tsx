@@ -1,42 +1,42 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Value, SelectProps } from '../../types/select.interface';
 import CustomSelect from './custom-select';
-import SelectUseOption from './select-use-option';
+import NativeSelect from './native-select';
 
 const Select = ({
   options,
   setValue,
-  isOptionUse = false,
-  multiple = true,
+  nativeSelect = false,
+  multiple = false,
   size = 0,
-  isAllSelect = false,
-  setIsAllSelect,
+  selectAll = false,
+  setSelectAll,
 }: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].value]);
-  const isAllSelected = options.length === selectedValue.length;
+  const allOptionSelected = options.length === selectedValue.length;
 
   useEffect(() => {
     setValue(selectedValue);
-    setIsAllSelect(isAllSelected);
+    setSelectAll(allOptionSelected);
   }, [selectedValue]);
 
   useEffect(() => {
-    if (isAllSelect) {
+    if (selectAll) {
       setSelectedValue([...options.map((option) => option.value)]);
       return;
     }
-    if (isAllSelected) {
+    if (allOptionSelected) {
       setSelectedValue([]);
     }
-  }, [isAllSelect]);
+  }, [selectAll]);
 
-  if (isOptionUse) {
+  if (nativeSelect) {
     return (
-      <SelectUseOption
+      <NativeSelect
         setSelectedValue={setSelectedValue}
         multiple={multiple}
         options={options}
-        isAllSelect={isAllSelect}
+        isAllSelect={selectAll}
         size={size}
       />
     );
