@@ -18,6 +18,7 @@ export interface CustomSelectProps {
   options: Option[];
   size: number;
   multiple: boolean;
+  className?: string;
 }
 
 export interface NativeSelectProps {
@@ -26,6 +27,7 @@ export interface NativeSelectProps {
   options: Option[];
   isAllSelect: boolean;
   size: number;
+  className?: string;
 }
 
 export interface SelectProps {
@@ -36,4 +38,5 @@ export interface SelectProps {
   setSelectAll: (args0: boolean) => void;
   multiple?: boolean;
   size?: number;
+  className?: string;
 }

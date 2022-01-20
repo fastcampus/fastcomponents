@@ -5,4 +5,5 @@ export interface RadioProps {
   name: string;
   setValue: (arg0: string | number) => void;
   value: string | number;
+  className?: string;
 }

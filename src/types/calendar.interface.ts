@@ -15,6 +15,7 @@ export interface WeekCalendarProps {
 
 export interface DateCalendarProps {
   dateNumber: number;
+  className?: string;
 }
 
 export interface CalendarLocation {
