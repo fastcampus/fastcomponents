@@ -5,6 +5,7 @@ import Table from '../../components/table';
 import Checkbox from '../../components/checkbox';
 import Radio from '../../components/radio';
 import Select from '../../components/select';
+import Button from '../../components/button';
 
 const HomeLayout = () => {
   return (
@@ -29,6 +30,7 @@ const HomeLayout = () => {
         <Select nativeSelect={true} size={7} />
         <Select nativeSelect={true} multiple={true} size={7} />
       </div>
+      <Button />
     </div>
   );
 };
