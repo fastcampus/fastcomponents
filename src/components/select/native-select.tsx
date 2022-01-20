@@ -1,11 +1,11 @@
 import React from 'react';
-import { SelectUseOptionProps } from 'src/types/select.interface';
+import { NativeSelectProps } from '../../types/select.interface';
 
-const SelectUseOption = ({ setSelectedValue, multiple, options, isAllSelect, size }: SelectUseOptionProps) => {
+const NativeSelect = ({ setSelectedValue, multiple, options, isAllSelect, size }: NativeSelectProps) => {
   const setValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
-      const options = e.target.options;
-      const selectedValues = [...options]
+      const optionDOMs = e.target.options;
+      const selectedValues = [...optionDOMs]
         .filter((option) => option.selected)
         .map((option) => {
           return option.value;
@@ -16,15 +16,16 @@ const SelectUseOption = ({ setSelectedValue, multiple, options, isAllSelect, siz
     }
     setSelectedValue([e.target.value]);
   };
+
   return (
     <select className="fc-select" onChange={setValueHandler} multiple={multiple} size={size}>
       {options.map((option) => (
         <option key={option.value} value={option.value} selected={multiple && isAllSelect}>
-          {option.innerHTML}
+          {option.label}
         </option>
       ))}
     </select>
   );
 };
 
-export default SelectUseOption;
+export default NativeSelect;

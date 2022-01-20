@@ -3,7 +3,7 @@ import React from 'react';
 export type Value = number | string;
 export interface Option {
   value: Value;
-  innerHTML: string;
+  label: string;
 }
 
 export interface CustomSelectBlockProps {
@@ -20,7 +20,7 @@ export interface CustomSelectProps {
   multiple: boolean;
 }
 
-export interface SelectUseOptionProps {
+export interface NativeSelectProps {
   setSelectedValue: React.Dispatch<React.SetStateAction<Value[]>>;
   multiple: boolean;
   options: Option[];
@@ -31,9 +31,9 @@ export interface SelectUseOptionProps {
 export interface SelectProps {
   options: Option[];
   setValue: (args0: Value[]) => void;
-  isOptionUse?: boolean;
-  isAllSelect?: boolean;
-  setIsAllSelect: (args0: boolean) => void;
+  nativeSelect?: boolean;
+  selectAll?: boolean;
+  setSelectAll: (args0: boolean) => void;
   multiple?: boolean;
   size?: number;
 }
