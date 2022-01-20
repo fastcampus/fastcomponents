@@ -6,5 +6,6 @@ import Sort from './components/sort';
 import Checkbox from './components/checkbox';
 import Radio from './components/radio';
 import Select from './components/select';
+import Button from './components/button';
 
-export { Input, Calendar, Table, Pagination, Sort, Checkbox, Radio, Select };
+export { Input, Calendar, Table, Pagination, Sort, Checkbox, Radio, Select, Button };
