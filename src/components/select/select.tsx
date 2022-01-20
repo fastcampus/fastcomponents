@@ -11,6 +11,7 @@ const Select = ({
   size = 0,
   selectAll = false,
   setSelectAll,
+  className,
 }: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].value]);
   const allOptionSelected = options.length === selectedValue.length;
@@ -33,6 +34,7 @@ const Select = ({
   if (nativeSelect) {
     return (
       <NativeSelect
+        className={className}
         setSelectedValue={setSelectedValue}
         multiple={multiple}
         options={options}
@@ -43,6 +45,7 @@ const Select = ({
   }
   return (
     <CustomSelect
+      className={className}
       selectedValue={selectedValue}
       setSelectedValue={setSelectedValue}
       options={options}

@@ -1,9 +1,9 @@
 import React from 'react';
 import type { RadioProps } from '../../types/radio.interface';
 
-const Radio = ({ name, disabled, value, setValue }: RadioProps) => {
+const Radio = ({ name, disabled, value, setValue, className }: RadioProps) => {
   return (
-    <div className="fc-radio">
+    <div className={`fc-radio ${className}`}>
       <input
         id={name + value}
         type="radio"

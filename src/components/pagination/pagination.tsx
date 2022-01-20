@@ -3,7 +3,7 @@ import { MiscUtil } from '@day1co/pebbles';
 import { getCurrentOffset, setPaginationQueryString } from './utils';
 import type { PaginationProps } from '../../types/pagination.interface';
 
-const Pagination = ({ count, limit, range, firstPage = 1 }: PaginationProps) => {
+const Pagination = ({ count, limit, range, firstPage = 1, className }: PaginationProps) => {
   const [offset, setOffset] = useState(getCurrentOffset());
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const Pagination = ({ count, limit, range, firstPage = 1 }: PaginationProps) => 
   };
 
   return (
-    <div className="fc-pagination">
+    <div className={`fc-pagination ${className}`}>
       <button className="first-btn" onClick={goToFirst}></button>
       <button className="prev-btn" onClick={goToPrev}></button>
       <div className="page-number-list">
