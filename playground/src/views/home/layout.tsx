@@ -6,6 +6,7 @@ import Checkbox from '../../components/checkbox';
 import Radio from '../../components/radio';
 import Select from '../../components/select';
 import Button from '../../components/button';
+import FileUploader from '../../components/file-uploader';
 
 const HomeLayout = () => {
   return (
@@ -31,6 +32,7 @@ const HomeLayout = () => {
         <Select nativeSelect={true} multiple={true} size={7} />
       </div>
       <Button />
+      <FileUploader />
     </div>
   );
 };
