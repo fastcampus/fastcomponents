@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { Button as FCButton } from '../../../src';
 import LogoImg from '../icons/logo.svg';
-import CancelImg from '../icons/cancel.svg';
+import { ReactComponent as CancelImg } from '../icons/cancel.svg';
 
 const Button = () => {
   const [cnt, setCnt] = useState(0);
@@ -55,7 +55,7 @@ const Button = () => {
         >
           <FCButton onClick={() => setCnt(0)}>
             취소하기
-            <img src={CancelImg} />
+            <CancelImg className="test" />
           </FCButton>
           <FCButton
             css={css`
