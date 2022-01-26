@@ -2,7 +2,8 @@ import React from 'react';
 import { useCallback } from 'react';
 import type { FileUploaderProps } from '../../types/file-uploader.interface';
 import Dropzone from './dropzone';
-import { getFileListFromEvent } from './utils';
+import { getFileListFromEvent, isFileListSizeExceeded } from './utils';
+import { FILE_SIZE_EXCEED_ERROR } from './error';
 
 const FileUploader = ({
   className,
@@ -14,11 +15,20 @@ const FileUploader = ({
   dropzoneChildren,
   dropzoneActiveChildren = <>Hover</>,
   setError,
+  fileMaxSize,
 }: FileUploaderProps) => {
   const onChangeCb = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = getFileListFromEvent(e);
-    setFile(files);
-    setError && setError(null);
+    try {
+      const files = getFileListFromEvent(e);
+      if (fileMaxSize && (await isFileListSizeExceeded(files, fileMaxSize))) {
+        throw FILE_SIZE_EXCEED_ERROR;
+      }
+      setFile(files);
+
+      setError && setError(null);
+    } catch (err) {
+      setError && setError(FILE_SIZE_EXCEED_ERROR);
+    }
   }, []);
 
   return (
@@ -32,6 +42,7 @@ const FileUploader = ({
           setFile={setFile}
           multiple={multiple}
           accept={accept}
+          fileMaxSize={fileMaxSize}
         />
       )}
     </div>

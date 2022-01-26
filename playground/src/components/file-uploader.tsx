@@ -60,9 +60,9 @@ const FileUploader = () => {
             font-size: 2rem;
           `}
         >
-          multiple : o, Accept : image/*
+          multiple : o, Accept : image/* fileMaxSize: 1MB
         </h3>
-        <FCFileUploader input setFile={setFile} multiple accept="image/*" />
+        <FCFileUploader input setFile={setFile} multiple accept="image/*" fileMaxSize={1000000} setError={setError} />
       </div>
       <div
         css={css`
@@ -74,7 +74,7 @@ const FileUploader = () => {
             font-size: 2rem;
           `}
         >
-          Dropzone-copy multiple X Accept : ''
+          Dropzone multiple X Accept : ''
         </h3>
 
         <FCFileUploader
@@ -105,7 +105,7 @@ const FileUploader = () => {
             font-size: 2rem;
           `}
         >
-          Dropzone-copy multiple O Accept : 'image/*'
+          Dropzone multiple O Accept : 'image/*' fileMaxSize: 1MB
         </h3>
 
         <FCFileUploader
@@ -126,6 +126,7 @@ const FileUploader = () => {
           dropzoneChildren={<>Dropzone</>}
           dropzoneActiveChildren={<>여기에 놓아주세요</>}
           setError={setError}
+          fileMaxSize={1000000}
         />
       </div>
     </>

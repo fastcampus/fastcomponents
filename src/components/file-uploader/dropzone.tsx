@@ -1,7 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import type { DropzoneProps } from '../../types/file-uploader.interface';
-import { NO_DROP_CALLBACK_ERROR, TO_MANY_FILES_ERROR, HAVE_REJECTED_FILES_ERROR } from './error';
-import { getFileListFromEvent } from './utils';
+import {
+  NO_DROP_CALLBACK_ERROR,
+  TO_MANY_FILES_ERROR,
+  HAVE_REJECTED_FILES_ERROR,
+  FILE_SIZE_EXCEED_ERROR,
+} from './error';
+import { getFileListFromEvent, isFileListSizeExceeded } from './utils';
 
 const isFileAcceptable = (file: File, accept: string) => {
   const [acceptType, acceptExtension] = accept.split('/'); // ex) image/jpg => ['image', 'jpg']
@@ -30,7 +35,15 @@ const filterFiles = (droppedFiles: File[], accept: string | undefined) => {
   return { acceptedFiles, rejectedFiles };
 };
 
-const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, setFile, multiple, setError, accept }: DropzoneProps) => {
+const Dropzone = ({
+  dropzoneActiveChildren,
+  dropzoneChildren,
+  setFile,
+  multiple,
+  setError,
+  accept,
+  fileMaxSize,
+}: DropzoneProps) => {
   const [isMouseHover, setIsMouseHover] = useState<boolean>(false);
 
   const onDropCb = useCallback(async (e: React.DragEvent<HTMLDivElement>) => {
@@ -44,6 +57,9 @@ const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, setFile, multiple,
       const droppedFiles = getFileListFromEvent(e);
       if (!multiple && droppedFiles.length !== 1) {
         throw TO_MANY_FILES_ERROR;
+      }
+      if (fileMaxSize && (await isFileListSizeExceeded(droppedFiles, fileMaxSize))) {
+        throw FILE_SIZE_EXCEED_ERROR;
       }
 
       const { acceptedFiles, rejectedFiles } = filterFiles(droppedFiles, accept);
@@ -64,6 +80,9 @@ const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, setFile, multiple,
         }
         if (err === NO_DROP_CALLBACK_ERROR) {
           setError(NO_DROP_CALLBACK_ERROR);
+        }
+        if (err === FILE_SIZE_EXCEED_ERROR) {
+          setError(FILE_SIZE_EXCEED_ERROR);
         }
       }
     }
