@@ -11,3 +11,7 @@ export class HAVE_REJECTED_FILES_ERROR extends Error {
 export const NO_DROP_CALLBACK_ERROR = new Error('NO_DROP_CALLBACK');
 
 export const INVALID_EVENT_ERROR = new Error('INVALID_EVENT');
+
+export const FILE_SIZE_EXCEED_ERROR = new Error('FILE_SIZE_EXCEED');
+
+export const FILE_READ_FAIL_ERROR = new Error('FILE_READ_FAIL');
