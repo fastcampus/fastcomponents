@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import { fromEvent } from 'file-selector';
 import type { DropzoneProps } from '../../types/file-uploader.interface';
-import { NO_DROP_CALLBACK, TO_MANY_FILES, HAVE_REJECTED_FILES } from './error';
+import { NO_DROP_CALLBACK_ERROR, TO_MANY_FILES_ERROR, HAVE_REJECTED_FILES_ERROR } from './error';
+import { getFileListFromEvent } from './utils';
 
 const isFileAcceptable = (file: File, accept: string) => {
   const [acceptType, acceptExtension] = accept.split('/'); // ex) image/jpg => ['image', 'jpg']
@@ -39,31 +39,31 @@ const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, setFile, multiple,
     setIsMouseHover(false);
 
     try {
-      if (!setFile) throw NO_DROP_CALLBACK;
+      if (!setFile) throw NO_DROP_CALLBACK_ERROR;
 
-      const droppedFiles = (await fromEvent(e as any)) as File[];
+      const droppedFiles = getFileListFromEvent(e);
       if (!multiple && droppedFiles.length !== 1) {
-        throw TO_MANY_FILES;
+        throw TO_MANY_FILES_ERROR;
       }
 
       const { acceptedFiles, rejectedFiles } = filterFiles(droppedFiles, accept);
       setFile(acceptedFiles);
 
       if (rejectedFiles.length !== 0) {
-        throw new HAVE_REJECTED_FILES(rejectedFiles);
+        throw new HAVE_REJECTED_FILES_ERROR(rejectedFiles);
       }
 
       setError && setError(null);
     } catch (err) {
       if (setError) {
-        if (err === TO_MANY_FILES) {
-          setError(TO_MANY_FILES);
+        if (err === TO_MANY_FILES_ERROR) {
+          setError(TO_MANY_FILES_ERROR);
         }
-        if (err instanceof HAVE_REJECTED_FILES) {
+        if (err instanceof HAVE_REJECTED_FILES_ERROR) {
           setError(err);
         }
-        if (err === NO_DROP_CALLBACK) {
-          setError(NO_DROP_CALLBACK);
+        if (err === NO_DROP_CALLBACK_ERROR) {
+          setError(NO_DROP_CALLBACK_ERROR);
         }
       }
     }

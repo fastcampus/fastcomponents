@@ -2,7 +2,7 @@ import React from 'react';
 import { useCallback } from 'react';
 import type { FileUploaderProps } from '../../types/file-uploader.interface';
 import Dropzone from './dropzone';
-import { fromEvent } from 'file-selector';
+import { getFileListFromEvent } from './utils';
 
 const FileUploader = ({
   className,
@@ -16,8 +16,9 @@ const FileUploader = ({
   setError,
 }: FileUploaderProps) => {
   const onChangeCb = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = (await fromEvent(e as any)) as File[];
+    const files = getFileListFromEvent(e);
     setFile(files);
+    setError && setError(null);
   }, []);
 
   return (
