@@ -11,7 +11,7 @@
   "scripts": {
     "stop": "lsof -ti:8080 | xargs kill",
     "start": "npm run serve",
-    "serve": "webpack serve --progress --mode development --config ./playground/webpack.config.js",
+    "serve": "webpack serve --progress --mode development --config playground/webpack.config.js",
     "build": "tsc",
     "prebuild": "rimraf ./dist && npm run lint",
     "prepublishOnly": "npm run build",

@@ -54,7 +54,7 @@ module.exports = {
           {
             loader: 'ts-loader',
             options: {
-              configFile: 'tsconfig.playground.json',
+              configFile: 'tsconfig.json',
             },
           },
         ],
