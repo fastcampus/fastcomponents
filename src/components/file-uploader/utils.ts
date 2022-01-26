@@ -1,5 +1,6 @@
 import React from 'react';
-import { INVALID_EVENT_ERROR } from './error';
+import type { Byte } from 'src/types/file-uploader.interface';
+import { INVALID_EVENT_ERROR, FILE_READ_FAIL_ERROR } from './error';
 
 export const getFileListFromEvent = (
   e: React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLDivElement>
@@ -13,4 +14,22 @@ export const getFileListFromEvent = (
     return fileList;
   }
   throw INVALID_EVENT_ERROR;
+};
+
+export const isfileSizeExceeded = (file: File, fileMaxSize: Byte): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = () => {
+      const res = reader.result;
+      if (res instanceof ArrayBuffer) {
+        console.log(res.byteLength);
+        if (res.byteLength < fileMaxSize) {
+          return resolve(false);
+        }
+        return resolve(true);
+      }
+      reject(FILE_READ_FAIL_ERROR);
+    };
+  });
 };
