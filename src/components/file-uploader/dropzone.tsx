@@ -30,16 +30,16 @@ const filterFiles = (droppedFiles: File[], accept: string | undefined) => {
   return { acceptedFiles, rejectedFiles };
 };
 
-const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, onDrop, multiple, setError, accept }: DropzoneProps) => {
+const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, setFile, multiple, setError, accept }: DropzoneProps) => {
   const [isMouseHover, setIsMouseHover] = useState<boolean>(false);
 
-  const onDropCb = async (e: React.DragEvent<HTMLDivElement>) => {
+  const onDropCb = useCallback(async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsMouseHover(false);
 
     try {
-      if (!onDrop) throw NO_DROP_CALLBACK;
+      if (!setFile) throw NO_DROP_CALLBACK;
 
       const droppedFiles = (await fromEvent(e as any)) as File[];
       if (!multiple && droppedFiles.length !== 1) {
@@ -47,7 +47,7 @@ const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, onDrop, multiple, 
       }
 
       const { acceptedFiles, rejectedFiles } = filterFiles(droppedFiles, accept);
-      onDrop(acceptedFiles);
+      setFile(acceptedFiles);
 
       if (rejectedFiles.length !== 0) {
         throw new HAVE_REJECTED_FILES(rejectedFiles);
@@ -67,7 +67,7 @@ const Dropzone = ({ dropzoneActiveChildren, dropzoneChildren, onDrop, multiple, 
         }
       }
     }
-  };
+  }, []);
 
   const onDragOverCb = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
