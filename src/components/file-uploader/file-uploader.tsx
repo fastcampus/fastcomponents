@@ -1,6 +1,6 @@
 import React from 'react';
 import type { FileUploaderProps } from '../../types/file-uploader.interface';
-import { useDropzone } from 'react-dropzone';
+import Dropzone from './dropzone';
 
 const FileUploader = ({
   className,
@@ -11,17 +11,21 @@ const FileUploader = ({
   input = false,
   dropzone = false,
   dropzoneChildren,
-  dropzoneActiveChildren,
+  dropzoneActiveChildren = <>Hover</>,
+  setError,
 }: FileUploaderProps) => {
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept, multiple });
   return (
     <div className={`fc-file-uploader ${className}`}>
       {input && <input type="file" onChange={onChange} multiple={multiple} accept={accept}></input>}
       {dropzone && (
-        <div className="dropzone" {...getRootProps()}>
-          <input {...getInputProps()} />
-          {isDragActive ? dropzoneActiveChildren : dropzoneChildren}
-        </div>
+        <Dropzone
+          dropzoneChildren={dropzoneChildren}
+          setError={setError}
+          dropzoneActiveChildren={dropzoneActiveChildren}
+          onDrop={onDrop}
+          multiple={multiple}
+          accept={accept}
+        />
       )}
     </div>
   );
