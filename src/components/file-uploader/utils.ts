@@ -16,14 +16,13 @@ export const getFileListFromEvent = (
   throw INVALID_EVENT_ERROR;
 };
 
-export const isfileSizeExceeded = (file: File, fileMaxSize: Byte): Promise<boolean> => {
+const isFileSizeExceeded = (file: File, fileMaxSize: Byte): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
       const res = reader.result;
       if (res instanceof ArrayBuffer) {
-        console.log(res.byteLength);
         if (res.byteLength < fileMaxSize) {
           return resolve(false);
         }
@@ -32,4 +31,13 @@ export const isfileSizeExceeded = (file: File, fileMaxSize: Byte): Promise<boole
       reject(FILE_READ_FAIL_ERROR);
     };
   });
+};
+
+export const isFileListSizeExceeded = async (fileList: File[], fileMaxSize: number) => {
+  for await (const file of fileList) {
+    if (await isFileSizeExceeded(file, fileMaxSize)) {
+      return true;
+    }
+  }
+  return false;
 };
