@@ -1,9 +1,6 @@
 import React from 'react';
 
-export type FileSize = {
-  size: number;
-  unit: 'KB' | 'MB' | 'GB' | 'TB';
-};
+export type FileSize = number | string;
 
 export interface DropzoneProps {
   dropzoneChildren?: React.ReactNode;

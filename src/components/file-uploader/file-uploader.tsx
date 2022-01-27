@@ -21,6 +21,7 @@ const FileUploader = ({
     try {
       const files = getFileListFromEvent(e);
       if (fileMaxSize && (await isFileListSizeExceeded(files, fileMaxSize))) {
+        e.target.value = '';
         throw FILE_SIZE_EXCEED_ERROR;
       }
       setFiles(files);

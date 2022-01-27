@@ -62,14 +62,7 @@ const FileUploader = () => {
         >
           multiple : o, Accept : image/* fileMaxSize: 1MB
         </h3>
-        <FCFileUploader
-          input
-          setFiles={setFiles}
-          multiple
-          accept="image/*"
-          fileMaxSize={{ size: 1, unit: 'MB' }}
-          setError={setError}
-        />
+        <FCFileUploader input setFiles={setFiles} multiple accept="image/*" fileMaxSize="1MB" setError={setError} />
       </div>
       <div
         css={css`
@@ -133,7 +126,7 @@ const FileUploader = () => {
           dropzoneChildren={<>Dropzone</>}
           dropzoneActiveChildren={<>여기에 놓아주세요</>}
           setError={setError}
-          fileMaxSize={{ size: 1, unit: 'MB' }}
+          fileMaxSize="1MB"
         />
       </div>
     </>
