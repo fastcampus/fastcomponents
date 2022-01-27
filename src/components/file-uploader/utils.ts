@@ -1,4 +1,5 @@
 import React from 'react';
+import bytes from 'bytes';
 import type { FileSize } from 'src/types/file-uploader.interface';
 import { INVALID_EVENT_ERROR, FILE_READ_FAIL_ERROR } from './error';
 
@@ -16,19 +17,6 @@ export const getFileListFromEvent = (
   throw INVALID_EVENT_ERROR;
 };
 
-const getByteLengthFromFileSize = (fileSize: FileSize) => {
-  switch (fileSize.unit) {
-    case 'KB':
-      return fileSize.size * 1000;
-    case 'MB':
-      return fileSize.size * 1000000;
-    case 'GB':
-      return fileSize.size * 1000000000;
-    case 'TB':
-      return fileSize.size * 1000000000000;
-  }
-};
-
 const isFileSizeExceeded = (file: File, fileMaxSize: FileSize): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -36,7 +24,8 @@ const isFileSizeExceeded = (file: File, fileMaxSize: FileSize): Promise<boolean>
     reader.onload = () => {
       const res = reader.result;
       if (res instanceof ArrayBuffer) {
-        if (res.byteLength < getByteLengthFromFileSize(fileMaxSize)) {
+        const fileSize = 'number' === typeof fileMaxSize ? fileMaxSize : bytes(fileMaxSize);
+        if (res.byteLength < fileSize) {
           return resolve(false);
         }
         return resolve(true);
