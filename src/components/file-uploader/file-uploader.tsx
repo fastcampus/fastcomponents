@@ -7,7 +7,7 @@ import { FILE_SIZE_EXCEED_ERROR } from './error';
 
 const FileUploader = ({
   className,
-  setFile,
+  setFiles,
   multiple = false,
   accept = '',
   input = false,
@@ -23,7 +23,7 @@ const FileUploader = ({
       if (fileMaxSize && (await isFileListSizeExceeded(files, fileMaxSize))) {
         throw FILE_SIZE_EXCEED_ERROR;
       }
-      setFile(files);
+      setFiles(files);
 
       setError && setError(null);
     } catch (err) {
@@ -39,7 +39,7 @@ const FileUploader = ({
           dropzoneChildren={dropzoneChildren}
           setError={setError}
           dropzoneActiveChildren={dropzoneActiveChildren}
-          setFile={setFile}
+          setFiles={setFiles}
           multiple={multiple}
           accept={accept}
           fileMaxSize={fileMaxSize}

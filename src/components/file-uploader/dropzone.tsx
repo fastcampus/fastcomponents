@@ -38,7 +38,7 @@ const filterFiles = (droppedFiles: File[], accept: string | undefined) => {
 const Dropzone = ({
   dropzoneActiveChildren,
   dropzoneChildren,
-  setFile,
+  setFiles,
   multiple,
   setError,
   accept,
@@ -52,7 +52,7 @@ const Dropzone = ({
     setIsMouseHover(false);
 
     try {
-      if (!setFile) throw NO_DROP_CALLBACK_ERROR;
+      if (!setFiles) throw NO_DROP_CALLBACK_ERROR;
 
       const droppedFiles = getFileListFromEvent(e);
       if (!multiple && droppedFiles.length !== 1) {
@@ -63,11 +63,12 @@ const Dropzone = ({
       }
 
       const { acceptedFiles, rejectedFiles } = filterFiles(droppedFiles, accept);
-      setFile(acceptedFiles);
 
       if (rejectedFiles.length !== 0) {
         throw new HAVE_REJECTED_FILES_ERROR(rejectedFiles);
       }
+
+      setFiles(acceptedFiles);
 
       setError && setError(null);
     } catch (err) {
