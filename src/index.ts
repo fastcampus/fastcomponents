@@ -10,4 +10,29 @@ import Select from './components/select';
 import Sort from './components/sort';
 import Table from './components/table';
 
-export { Button, Calendar, Checkbox, CodeEditor, FileUploader, Input, Pagination, Radio, Select, Sort, Table };
+export type { ButtonProps } from './types/button.interface';
+export type {
+  CalendarProps,
+  MonthCalendarProps,
+  WeekCalendarProps,
+  DateCalendarProps,
+  CalendarLocation,
+  CalendarContexts,
+} from './types/calendar.interface';
+export type { CheckboxProps } from './types/checkbox.interface';
+export type { FileSize, DropzoneProps, FileUploaderProps } from './types/file-uploader.interface';
+export type { InputType, InputProps } from './types/input.interface';
+export type { PaginationProps } from './types/pagination.interface';
+export type { RadioProps } from './types/radio.interface';
+export type {
+  Value,
+  Option,
+  CustomSelectBlockProps,
+  CustomSelectProps,
+  NativeSelectProps,
+  SelectProps,
+} from './types/select.interface';
+export type { SortBy, SortProps } from './types/sort.interface';
+export type { TableProps } from './types/table.interface';
+
+export { Input, Checkbox, Calendar, CodeEditor, Table, Pagination, Sort, Radio, Select, Button, FileUploader };
