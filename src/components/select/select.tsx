@@ -18,7 +18,7 @@ const Select = ({
 
   useEffect(() => {
     setValue(selectedValue);
-    setSelectAll(allOptionSelected);
+    setSelectAll && setSelectAll(allOptionSelected);
   }, [selectedValue]);
 
   useEffect(() => {
