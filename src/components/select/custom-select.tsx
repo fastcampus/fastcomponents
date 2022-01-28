@@ -7,10 +7,10 @@ import useElementHeight from '../../hooks/useElementHeight';
 const CustomSelectBlock = styled.div<CustomSelectBlockProps>`
   position: relative;
   & > .options {
-    opacity: ${({ isOptionVisible }) => (isOptionVisible ? '1' : '0')};
-    z-index: ${({ isOptionVisible }) => (isOptionVisible ? '1' : '-1')};
-
     position: absolute;
+    z-index: 1;
+    visibility: ${({ isOptionVisible }) => (isOptionVisible ? 'visible' : 'hidden')};
+
     ${({ customOptionHeight, size }) => {
       if (size) {
         return `
