@@ -28,6 +28,7 @@ import type { RouteObject } from 'react-router-dom';
 import { useRoutes } from 'react-router-dom';
 import HomeLayout from '../../views/home/layout';
 import PaginationLayout from '../../views/pagination/layout';
+import CodeEditorLayout from '../../views/code-editor/layout';
 
 const CustomRoutes = () => {
   const routes: RouteObject[] = [
@@ -38,6 +39,10 @@ const CustomRoutes = () => {
     {
       path: '/pagination',
       element: <PaginationLayout />,
+    },
+    {
+      path: '/code-editor',
+      element: <CodeEditorLayout />,
     },
   ];
   return useRoutes(routes);

@@ -20,7 +20,7 @@ const NativeSelect = ({ setSelectedValue, multiple, options, isAllSelect, size }
   return (
     <select className="fc-select" onChange={setValueHandler} multiple={multiple} size={size}>
       {options.map((option) => (
-        <option key={option.value} value={option.value} selected={multiple && isAllSelect}>
+        <option key={option.value} value={option.value}>
           {option.label}
         </option>
       ))}
