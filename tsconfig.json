@@ -7,6 +7,7 @@
     "target": "esnext",
     "module": "esnext",
     "newLine": "lf",
+    "declaration": true,
     "importHelpers": true,
     "lib": ["esnext", "es2019", "es2017", "es7", "es6", "dom", "dom.iterable"],
     "jsx": "react-jsx",
