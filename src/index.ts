@@ -20,6 +20,7 @@ export type {
   CalendarContexts,
 } from './types/calendar.interface';
 export type { CheckboxProps } from './types/checkbox.interface';
+export type { SelectableLanguageType, SelectableThemeType, CodeEditorProps } from './types/code-editor.interface';
 export type { FileSize, DropzoneProps, FileUploaderProps } from './types/file-uploader.interface';
 export type { InputType, InputProps } from './types/input.interface';
 export type { PaginationProps } from './types/pagination.interface';
