@@ -35,7 +35,7 @@ export interface SelectProps {
   setValue: (args0: Value[]) => void;
   nativeSelect?: boolean;
   selectAll?: boolean;
-  setSelectAll: (args0: boolean) => void;
+  setSelectAll?: (args0: boolean) => void;
   multiple?: boolean;
   size?: number;
   className?: string;
