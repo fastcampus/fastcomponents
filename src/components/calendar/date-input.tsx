@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { DateUtil } from '@day1co/pebbles';
 import Input from '../input';
 import { CalendarContext } from './calendar';
-import { getMonth, getYMDString } from './utils';
+import { getMonth } from './utils';
 
 const DateInput = () => {
   const { selectedDate, setCalendarLocation, setSelectedDate } = useContext(CalendarContext);
@@ -19,7 +19,12 @@ const DateInput = () => {
     }
   };
   return (
-    <Input className="date-input" type="date" value={getYMDString(selectedDate)} onChange={dateInputOnChangeHandler} />
+    <Input
+      className="date-input"
+      type="date"
+      value={DateUtil.format(selectedDate, { format: 'YYYY-MM-DD' })}
+      onChange={dateInputOnChangeHandler}
+    />
   );
 };
 
