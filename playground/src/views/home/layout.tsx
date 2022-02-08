@@ -7,6 +7,7 @@ import Radio from '../../components/radio';
 import Select from '../../components/select';
 import Button from '../../components/button';
 import FileUploader from '../../components/file-uploader';
+import TabList from '../../components/tab-list';
 
 const HomeLayout = () => {
   return (
@@ -33,6 +34,7 @@ const HomeLayout = () => {
       </div>
       <Button />
       <FileUploader />
+      <TabList />
     </div>
   );
 };
