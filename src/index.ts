@@ -9,6 +9,7 @@ import Radio from './components/radio';
 import Select from './components/select';
 import Sort from './components/sort';
 import Table from './components/table';
+import TabList from './components/tab-list';
 
 export type { ButtonProps } from './types/button.interface';
 export type {
@@ -35,5 +36,6 @@ export type {
 } from './types/select.interface';
 export type { SortBy, SortProps } from './types/sort.interface';
 export type { TableProps } from './types/table.interface';
+export type { Tab, TabListProps } from './types/tab-list.interface';
 
-export { Input, Checkbox, Calendar, CodeEditor, Table, Pagination, Sort, Radio, Select, Button, FileUploader };
+export { Input, Checkbox, Calendar, CodeEditor, Table, Pagination, Sort, Radio, Select, Button, FileUploader, TabList };
