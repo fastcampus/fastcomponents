@@ -2,7 +2,7 @@ export type SortBy = 'ASC' | 'DESC';
 
 export type Tab = {
   name: string;
-  slug: string;
+  [key: string]: string;
 };
 
 export interface TabListProps {
