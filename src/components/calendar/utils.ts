@@ -26,3 +26,5 @@ export const getPrevMonthLocation = ({ year, month }: CalendarLocation) => {
     month: month - 1,
   };
 };
+export const getYMDString = (date: Date) =>
+  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
