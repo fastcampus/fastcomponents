@@ -35,6 +35,20 @@ const CustomRoutes = () => {
     {
       path: '/home',
       element: <HomeLayout />,
+      children: [
+        {
+          path: 'course',
+          element: <div>코스정보 입니다.</div>,
+        },
+        {
+          path: 'lecture',
+          element: <div>강의정보 입니다.</div>,
+        },
+        {
+          path: 'exam',
+          element: <div>시험정보 입니다.</div>,
+        },
+      ],
     },
     {
       path: '/pagination',
