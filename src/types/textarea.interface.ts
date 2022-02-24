@@ -12,4 +12,5 @@ export interface TextAreaProps {
   maxLength?: number;
   min?: number;
   minLength?: number;
+  id?: string;
 }
