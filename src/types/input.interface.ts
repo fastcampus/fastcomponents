@@ -38,4 +38,5 @@ export interface InputProps {
   maxLength?: number;
   min?: number;
   minLength?: number;
+  id?: string;
 }

@@ -19,10 +19,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       maxLength,
       min,
       minLength,
+      id,
     },
     ref
   ) => (
     <input
+      id={id}
       style={style}
       className={className}
       defaultValue={defaultValue}
