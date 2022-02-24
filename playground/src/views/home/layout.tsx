@@ -8,6 +8,7 @@ import Select from '../../components/select';
 import Button from '../../components/button';
 import FileUploader from '../../components/file-uploader';
 import TabList from '../../components/tab-list';
+import TextArea from '../../components/textarea';
 
 const HomeLayout = () => {
   return (
@@ -35,6 +36,7 @@ const HomeLayout = () => {
       <Button />
       <FileUploader />
       <TabList />
+      <TextArea />
     </div>
   );
 };
