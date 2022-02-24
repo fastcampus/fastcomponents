@@ -10,6 +10,7 @@ import Select from './components/select';
 import Sort from './components/sort';
 import Table from './components/table';
 import TabList from './components/tab-list';
+import TextArea from './components/textarea';
 
 export type { ButtonProps } from './types/button.interface';
 export type {
@@ -24,6 +25,7 @@ export type { CheckboxProps } from './types/checkbox.interface';
 export type { SelectableLanguageType, SelectableThemeType, CodeEditorProps } from './types/code-editor.interface';
 export type { FileSize, DropzoneProps, FileUploaderProps } from './types/file-uploader.interface';
 export type { InputType, InputProps } from './types/input.interface';
+export type { TextAreaProps } from './types/textarea.interface';
 export type { PaginationProps } from './types/pagination.interface';
 export type { RadioProps } from './types/radio.interface';
 export type {
@@ -38,4 +40,18 @@ export type { SortBy, SortProps } from './types/sort.interface';
 export type { TableProps } from './types/table.interface';
 export type { Tab, TabListProps } from './types/tab-list.interface';
 
-export { Input, Checkbox, Calendar, CodeEditor, Table, Pagination, Sort, Radio, Select, Button, FileUploader, TabList };
+export {
+  Input,
+  Checkbox,
+  Calendar,
+  CodeEditor,
+  Table,
+  Pagination,
+  Sort,
+  Radio,
+  Select,
+  Button,
+  FileUploader,
+  TabList,
+  TextArea,
+};
