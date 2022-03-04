@@ -3,7 +3,17 @@ import { MiscUtil } from '@day1co/pebbles';
 import { getCurrentOffset, setPaginationQueryString } from './utils';
 import type { PaginationProps } from '../../types/pagination.interface';
 
-const Pagination = ({ count, limit, range, firstPage = 1, className }: PaginationProps) => {
+const Pagination = ({
+  count,
+  limit,
+  range,
+  className,
+  firstIcon,
+  lastIcon,
+  prevIcon,
+  nextIcon,
+  firstPage = 1,
+}: PaginationProps) => {
   const [offset, setOffset] = useState(getCurrentOffset());
 
   useEffect(() => {
@@ -38,8 +48,12 @@ const Pagination = ({ count, limit, range, firstPage = 1, className }: Paginatio
 
   return (
     <div className={`fc-pagination ${className}`}>
-      <button className="first-btn" onClick={goToFirst}></button>
-      <button className="prev-btn" onClick={goToPrev}></button>
+      <button className="first-btn" onClick={goToFirst}>
+        {firstIcon ? firstIcon : '<<'}
+      </button>
+      <button className="prev-btn" onClick={goToPrev}>
+        {prevIcon ? prevIcon : '<'}
+      </button>
       <div className="page-number-list">
         {pages.map(({ page, active }) => (
           <span key={page} className={`${active && 'active'}`} onClick={goToPage(page)}>
@@ -47,8 +61,12 @@ const Pagination = ({ count, limit, range, firstPage = 1, className }: Paginatio
           </span>
         ))}
       </div>
-      <button className="next-btn" onClick={goToNext}></button>
-      <button className="last-btn" onClick={goToLast}></button>
+      <button className="next-btn" onClick={goToNext}>
+        {nextIcon ? nextIcon : '>'}
+      </button>
+      <button className="last-btn" onClick={goToLast}>
+        {lastIcon ? lastIcon : '>>'}
+      </button>
     </div>
   );
 };
