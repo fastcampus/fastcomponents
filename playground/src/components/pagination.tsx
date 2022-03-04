@@ -1,6 +1,10 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Pagination as FCPagination } from '../../../src';
+import { ReactComponent as First } from '../icons/first.svg';
+import { ReactComponent as Last } from '../icons/last.svg';
+import { ReactComponent as Next } from '../icons/next.svg';
+import { ReactComponent as Prev } from '../icons/prev.svg';
 
 const Pagination = () => {
   return (
@@ -31,31 +35,18 @@ const Pagination = () => {
           .active {
             background-color: rgba(0, 255, 0, 0.3);
           }
-
-          .first-btn {
-            &:before {
-              content: '<<';
-            }
-          }
-          .prev-btn {
-            &:before {
-              content: '<';
-            }
-          }
-          .next-btn {
-            &:before {
-              content: '>';
-            }
-          }
-          .last-btn {
-            &:before {
-              content: '>>';
-            }
-          }
         }
       `}
     >
-      <FCPagination count={165} limit={10} range={2} />
+      <FCPagination
+        count={165}
+        limit={10}
+        range={2}
+        firstIcon={<First />}
+        lastIcon={<Last />}
+        nextIcon={<Next />}
+        prevIcon={<Prev />}
+      />
     </div>
   );
 };
