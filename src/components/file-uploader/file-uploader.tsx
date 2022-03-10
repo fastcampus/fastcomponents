@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCallback } from 'react';
+import { css } from '@emotion/react';
 import type { FileUploaderProps } from '../../types/file-uploader.interface';
 import Dropzone from './dropzone';
 import { getFileListFromEvent, isFileListSizeExceeded } from './utils';
@@ -16,6 +17,7 @@ const FileUploader = ({
   dropzoneActiveChildren = <>Hover</>,
   setError,
   fileMaxSize,
+  fileUploadText = '파일선택',
 }: FileUploaderProps) => {
   const onChangeCb = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -34,7 +36,21 @@ const FileUploader = ({
 
   return (
     <div className={`fc-file-uploader ${className}`}>
-      {input && <input type="file" onChange={onChangeCb} multiple={multiple} accept={accept}></input>}
+      {input && (
+        <>
+          <label htmlFor="file-input">{fileUploadText}</label>
+          <input
+            css={css`
+              display: none;
+            `}
+            id="file-input"
+            type="file"
+            onChange={onChangeCb}
+            multiple={multiple}
+            accept={accept}
+          ></input>
+        </>
+      )}
       {dropzone && (
         <Dropzone
           dropzoneChildren={dropzoneChildren}
