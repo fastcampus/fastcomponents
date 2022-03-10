@@ -15,4 +15,5 @@ export interface FileUploaderProps extends DropzoneProps {
   className?: string;
   input?: boolean;
   dropzone?: boolean;
+  fileUploadText?: string;
 }
