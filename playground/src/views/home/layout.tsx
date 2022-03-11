@@ -21,17 +21,21 @@ const HomeLayout = () => {
       <Radio />
       <div>
         <h1 style={{ fontSize: '4rem' }}>Select size default</h1>
-        <Select nativeSelect={false} />
-        <Select nativeSelect={false} multiple={true} />
-        <Select nativeSelect={true} />
-        <Select nativeSelect={true} multiple={true} />
+        <Select />
+        <Select multiple={true} />
+        <Select nativeSelect />
+        <Select nativeSelect multiple={true} />
       </div>
       <div>
         <h1 style={{ fontSize: '4rem' }}>Select size=7 </h1>
-        <Select nativeSelect={false} size={7} />
-        <Select nativeSelect={false} multiple={true} size={7} />
-        <Select nativeSelect={true} size={7} />
-        <Select nativeSelect={true} multiple={true} size={7} />
+        <Select size={7} />
+        <Select multiple={true} size={7} />
+        <Select nativeSelect size={7} />
+        <Select nativeSelect multiple={true} size={7} />
+        <h2>기본값 3 추가 (multiple)</h2>
+        <Select initialSelectedValue={[2, 3]} multiple size={7} />
+        <h2>기본값 3 추가 (multiple x)</h2>
+        <Select initialSelectedValue={3} size={7} />
       </div>
       <Button />
       <FileUploader />
