@@ -32,6 +32,7 @@ export interface NativeSelectProps {
 
 export interface SelectProps {
   options: Option[];
+  initialSelectedValue?: Value | Value[];
   setValue: (args0: Value[]) => void;
   nativeSelect?: boolean;
   selectAll?: boolean;
