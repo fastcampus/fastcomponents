@@ -5,6 +5,7 @@ import NativeSelect from './native-select';
 
 const Select = ({
   options,
+  initialSelectedValue,
   setValue,
   nativeSelect = false,
   multiple = false,
@@ -13,7 +14,13 @@ const Select = ({
   setSelectAll,
   className,
 }: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<Value[]>(multiple ? [] : [options[0].value]);
+  const [selectedValue, setSelectedValue] = useState<Value[]>(
+    multiple
+      ? initialSelectedValue
+        ? [...(initialSelectedValue as Value[])]
+        : []
+      : [(initialSelectedValue as Value) || options[0].value]
+  );
   const allOptionSelected = options.length === selectedValue.length;
 
   useEffect(() => {
