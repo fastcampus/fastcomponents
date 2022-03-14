@@ -14,13 +14,13 @@ const Select = ({
   setSelectAll,
   className,
 }: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<Value[]>(
-    multiple
-      ? initialSelectedValue
-        ? [...(initialSelectedValue as Value[])]
-        : []
-      : [(initialSelectedValue as Value) || options[0].value]
-  );
+  const setInitailValue = () => {
+    if (!multiple) return [(initialSelectedValue as Value) || options[0].value];
+    if (initialSelectedValue) return [...(initialSelectedValue as Value[])];
+    return [];
+  };
+
+  const [selectedValue, setSelectedValue] = useState<Value[]>(setInitailValue());
   const allOptionSelected = options.length === selectedValue.length;
 
   useEffect(() => {
@@ -37,6 +37,10 @@ const Select = ({
       setSelectedValue([]);
     }
   }, [selectAll]);
+
+  useEffect(() => {
+    setSelectedValue(setInitailValue());
+  }, [initialSelectedValue]);
 
   if (nativeSelect) {
     return (

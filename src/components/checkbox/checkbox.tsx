@@ -1,7 +1,7 @@
 import React from 'react';
 import type { CheckboxProps } from '../../types/checkbox.interface';
 
-const Checkbox = ({ checked, setChecked, disabled, className }: CheckboxProps) => {
+const Checkbox = ({ checked, setChecked, disabled = false, className }: CheckboxProps) => {
   return (
     <label
       className={`fc-checkbox ${className} ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''}`}

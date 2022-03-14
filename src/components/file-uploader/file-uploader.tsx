@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCallback } from 'react';
 import { css } from '@emotion/react';
 import type { FileUploaderProps } from '../../types/file-uploader.interface';
@@ -8,6 +8,7 @@ import { FILE_SIZE_EXCEED_ERROR } from './error';
 
 const FileUploader = ({
   className,
+  initialFiles,
   setFiles,
   multiple = false,
   accept = '',
@@ -19,20 +20,29 @@ const FileUploader = ({
   fileMaxSize,
   fileUploadText = '파일선택',
 }: FileUploaderProps) => {
+  const parseFileAndSet = async (files: File[]) => {
+    if (fileMaxSize && (await isFileListSizeExceeded(files, fileMaxSize))) {
+      throw FILE_SIZE_EXCEED_ERROR;
+    }
+    setFiles(files);
+  };
+
   const onChangeCb = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       const files = getFileListFromEvent(e);
-      if (fileMaxSize && (await isFileListSizeExceeded(files, fileMaxSize))) {
-        e.target.value = '';
-        throw FILE_SIZE_EXCEED_ERROR;
-      }
-      setFiles(files);
-
+      await parseFileAndSet(files);
       setError && setError(null);
     } catch (err) {
+      e.target.value = '';
       setError && setError(FILE_SIZE_EXCEED_ERROR);
     }
   }, []);
+
+  useEffect(() => {
+    if (initialFiles) {
+      parseFileAndSet(initialFiles);
+    }
+  }, [initialFiles]);
 
   return (
     <div className={`fc-file-uploader ${className}`}>
