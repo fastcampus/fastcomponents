@@ -38,6 +38,16 @@ const Select = ({
     }
   }, [selectAll]);
 
+  useEffect(() => {
+    setSelectedValue(
+      multiple
+        ? initialSelectedValue
+          ? [...(initialSelectedValue as Value[])]
+          : []
+        : [(initialSelectedValue as Value) || options[0].value]
+    );
+  }, [initialSelectedValue]);
+
   if (nativeSelect) {
     return (
       <NativeSelect
