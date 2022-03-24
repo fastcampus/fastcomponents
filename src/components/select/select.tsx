@@ -14,6 +14,7 @@ const Select = ({
   setSelectAll,
   className,
   placeholder = '선택',
+  ...restProps
 }: SelectProps) => {
   const setInitialValue = () => {
     if (initialSelectedValue) {
@@ -58,6 +59,7 @@ const Select = ({
         isAllSelect={selectAll}
         size={size}
         placeholder={placeholder}
+        {...restProps}
       />
     );
   }
@@ -70,6 +72,7 @@ const Select = ({
       size={size}
       multiple={multiple}
       placeholder={placeholder}
+      {...restProps}
     />
   );
 };

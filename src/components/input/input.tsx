@@ -20,7 +20,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       min,
       minLength,
       id,
-    },
+      ...restProps
+    }: InputProps,
     ref
   ) => (
     <input
@@ -40,6 +41,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       maxLength={maxLength}
       min={min}
       minLength={minLength}
+      {...restProps}
     />
   )
 );
