@@ -11,9 +11,9 @@ export const setPaginationQueryString = (sort?: SortBy) => {
   history.replaceState({}, 'query-string', `?${params.toString()}`);
 };
 
-const Sort = ({ className }: SortProps) => {
+const Sort = ({ className, ...restProps }: SortProps) => {
   return (
-    <div className={`fc-sort ${className}`}>
+    <div className={`fc-sort ${className}`} {...restProps}>
       <button className="asc" onClick={() => setPaginationQueryString('ASC')}></button>
       <button className="desc" onClick={() => setPaginationQueryString('DESC')}></button>
       <button className="none" onClick={() => setPaginationQueryString()}></button>

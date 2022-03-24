@@ -1,9 +1,9 @@
 import React from 'react';
 import type { TabListProps } from '../../types/tab-list.interface';
 
-const TabList = ({ className, tabList, selectedTab, onTabClick }: TabListProps) => {
+const TabList = ({ className, tabList, selectedTab, onTabClick, ...restProps }: TabListProps) => {
   return (
-    <div className={`fc-tab-list ${className}`}>
+    <div className={`fc-tab-list ${className}`} {...restProps}>
       {tabList.map((tab) => {
         return (
           <div

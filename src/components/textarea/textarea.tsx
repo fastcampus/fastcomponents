@@ -16,6 +16,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       maxLength,
       minLength,
       id,
+      ...restProps
     }: TextAreaProps,
     ref
   ) => {
@@ -33,7 +34,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         maxLength={maxLength}
         minLength={minLength}
         id={id}
-      ></textarea>
+        {...restProps}
+      />
     );
   }
 );

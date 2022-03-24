@@ -1,7 +1,7 @@
 import React from 'react';
 import { NativeSelectProps } from '../../types/select.interface';
 
-const NativeSelect = ({ setSelectedValue, multiple, options, isAllSelect, size, placeholder }: NativeSelectProps) => {
+const NativeSelect = ({ setSelectedValue, multiple, options, size, placeholder, ...restProps }: NativeSelectProps) => {
   const setValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
       const optionDOMs = e.target.options;
@@ -18,7 +18,7 @@ const NativeSelect = ({ setSelectedValue, multiple, options, isAllSelect, size, 
   };
 
   return (
-    <select className="fc-select" onChange={setValueHandler} multiple={multiple} size={size}>
+    <select className="fc-select" onChange={setValueHandler} multiple={multiple} size={size} {...restProps}>
       <option value="" selected>
         {placeholder}
       </option>
