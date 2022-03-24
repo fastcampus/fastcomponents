@@ -40,6 +40,7 @@ const CustomSelectBlock = styled.div<CustomSelectBlockProps>`
 `;
 
 const CustomSelect = ({
+  className,
   selectedValue,
   setSelectedValue,
   options,
@@ -70,7 +71,7 @@ const CustomSelect = ({
   };
 
   return (
-    <div className="fc-select" {...restProps}>
+    <div className={`fc-select ${className}`} {...restProps}>
       <div className="preview" onClick={previewClickHandler}>
         {selectedValue.length > 0 ? selectedValue : placeholder}
       </div>
@@ -93,7 +94,7 @@ const CustomSelect = ({
           onClick={() => {
             setIsOptionVisible(false);
           }}
-        ></div>
+        />
       </CustomSelectBlock>
     </div>
   );

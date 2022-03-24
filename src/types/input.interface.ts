@@ -29,7 +29,7 @@ export interface InputProps {
   placeholder?: string;
   disabled?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  ref?: React.LegacyRef<HTMLInputElement>;
+  ref?: React.MutableRefObject<HTMLInputElement>;
   required?: boolean;
   type?: InputType;
   value?: string;
