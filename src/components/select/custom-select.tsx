@@ -40,7 +40,7 @@ const CustomSelectBlock = styled.div<CustomSelectBlockProps>`
 `;
 
 const CustomSelect = ({
-  className
+  className,
   selectedValue,
   setSelectedValue,
   options,
