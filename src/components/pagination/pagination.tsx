@@ -13,6 +13,7 @@ const Pagination = ({
   prevIcon,
   nextIcon,
   firstPage = 1,
+  ...restProps
 }: PaginationProps) => {
   const [offset, setOffset] = useState(getCurrentOffset());
 
@@ -47,7 +48,7 @@ const Pagination = ({
   };
 
   return (
-    <div className={`fc-pagination ${className}`}>
+    <div className={`fc-pagination ${className}`} {...restProps}>
       <button className="first-btn" onClick={goToFirst}>
         {firstIcon ? firstIcon : '<<'}
       </button>

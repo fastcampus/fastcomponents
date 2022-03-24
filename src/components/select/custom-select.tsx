@@ -39,7 +39,15 @@ const CustomSelectBlock = styled.div<CustomSelectBlockProps>`
   }
 `;
 
-const CustomSelect = ({ selectedValue, setSelectedValue, options, size, multiple, placeholder }: CustomSelectProps) => {
+const CustomSelect = ({
+  selectedValue,
+  setSelectedValue,
+  options,
+  size,
+  multiple,
+  placeholder,
+  ...restProps
+}: CustomSelectProps) => {
   const [isOptionVisible, setIsOptionVisible] = useState(false);
   const [customOptionHeight, customOptionRef] = useElementHeight();
 
@@ -62,7 +70,7 @@ const CustomSelect = ({ selectedValue, setSelectedValue, options, size, multiple
   };
 
   return (
-    <div className="fc-select">
+    <div className="fc-select" {...restProps}>
       <div className="preview" onClick={previewClickHandler}>
         {selectedValue.length > 0 ? selectedValue : placeholder}
       </div>
