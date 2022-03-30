@@ -4,6 +4,10 @@ export interface CalendarProps {
   navigator?: boolean;
   dateinput?: boolean;
   rangeDate?: boolean;
+  setDate?: (date: Date | null) => void;
+  setEndDate?: (date: Date | null) => void;
+  calendarLocation?: MonthCalendarProps;
+  setCalendarLocation?: (calendarLocation: MonthCalendarProps) => void;
 }
 
 export interface MonthCalendarProps {
