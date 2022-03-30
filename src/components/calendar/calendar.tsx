@@ -10,7 +10,7 @@ export const CalendarContext = createContext<CalendarContexts>({
   calendarLocation: { year: new Date().getFullYear(), month: getMonth(new Date()) },
 });
 
-const Calendar = ({ date = new Date() }: CalendarProps) => {
+const Calendar = ({ date = new Date(), navigator = false, dateinput = false }: CalendarProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(date);
   const [calendarLocation, setCalendarLocation] = useState<CalendarLocation>({
     year: date.getFullYear(),
@@ -25,8 +25,8 @@ const Calendar = ({ date = new Date() }: CalendarProps) => {
       value={{ selectedDate, setSelectedDate, calendarLocation, setCalendarLocation, isCurrentYearMonth }}
     >
       <div className="fc-calendar">
-        <Input />
-        <CalendarContents />
+        {dateinput && <Input />}
+        <CalendarContents navigator={navigator} />
       </div>
     </CalendarContext.Provider>
   );

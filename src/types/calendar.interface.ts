@@ -1,5 +1,7 @@
 export interface CalendarProps {
   date?: Date;
+  navigator?: boolean;
+  dateinput?: boolean;
 }
 
 export interface MonthCalendarProps {
