@@ -34,11 +34,14 @@ const BpoCalendar = () => {
             &.selected {
               background-color: rgba(0, 255, 0, 0.3);
             }
+            &.selected-range {
+              background-color: gold;
+            }
           }
         }
       `}
     >
-      <FCCalendar />
+      <FCCalendar rangeDate />
     </div>
   );
 };
