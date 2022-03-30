@@ -8,21 +8,33 @@ export const CalendarContext = createContext<CalendarContexts>({
   selectedDate: new Date(),
   isCurrentYearMonth: true,
   calendarLocation: { year: new Date().getFullYear(), month: getMonth(new Date()) },
+  rangeDate: false,
 });
 
-const Calendar = ({ date = new Date(), navigator = false, dateinput = false }: CalendarProps) => {
-  const [selectedDate, setSelectedDate] = useState<Date>(date);
+const Calendar = ({ date, endDate, navigator = false, dateinput = false, rangeDate = false }: CalendarProps) => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(date || null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(rangeDate ? (endDate ? endDate : null) : null);
   const [calendarLocation, setCalendarLocation] = useState<CalendarLocation>({
-    year: date.getFullYear(),
-    month: getMonth(date),
+    year: date?.getFullYear() || new Date().getFullYear(),
+    month: date ? getMonth(date) : new Date().getMonth() + 1,
   });
 
-  const isCurrentYearMonth =
-    selectedDate.getFullYear() === calendarLocation.year && getMonth(selectedDate) === calendarLocation.month;
+  const isCurrentYearMonth = selectedDate
+    ? selectedDate.getFullYear() === calendarLocation.year && getMonth(selectedDate) === calendarLocation.month
+    : false;
 
   return (
     <CalendarContext.Provider
-      value={{ selectedDate, setSelectedDate, calendarLocation, setCalendarLocation, isCurrentYearMonth }}
+      value={{
+        selectedDate,
+        setSelectedDate,
+        setSelectedEndDate,
+        calendarLocation,
+        setCalendarLocation,
+        isCurrentYearMonth,
+        selectedEndDate,
+        rangeDate,
+      }}
     >
       <div className="fc-calendar">
         {dateinput && <Input />}
