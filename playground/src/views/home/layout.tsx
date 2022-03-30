@@ -9,11 +9,20 @@ import Button from '../../components/button';
 import FileUploader from '../../components/file-uploader';
 import TabList from '../../components/tab-list';
 import TextArea from '../../components/textarea';
+import BpoCalendar from '../../components/bpo-calendar';
+import styled from '@emotion/styled';
 
+const Block = styled.div`
+  padding: 5rem;
+  border: 2px solid black;
+`;
 const HomeLayout = () => {
   return (
     <div>
       <h1>home</h1>
+      <Block>
+        <BpoCalendar />
+      </Block>
       <InputList />
       <Calendar />
       <Table />
