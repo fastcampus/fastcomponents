@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { Calendar as FCCalendar } from '../../../src';
 
-const Calendar = () => {
+const BpoCalendar = () => {
   return (
     <div
       css={css`
@@ -38,9 +38,9 @@ const Calendar = () => {
         }
       `}
     >
-      <FCCalendar navigator dateinput />
+      <FCCalendar />
     </div>
   );
 };
 
-export default Calendar;
+export default BpoCalendar;
