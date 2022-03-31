@@ -41,7 +41,7 @@ const BpoCalendar = () => {
         }
       `}
     >
-      <FCCalendar rangeDate />
+      <FCCalendar rangeDate navigator />
     </div>
   );
 };
