@@ -1,5 +1,13 @@
 export interface CalendarProps {
   date?: Date;
+  endDate?: Date;
+  navigator?: boolean;
+  dateinput?: boolean;
+  rangeDate?: boolean;
+  setDate?: (date: Date | null) => void;
+  setEndDate?: (date: Date | null) => void;
+  calendarLocation?: MonthCalendarProps;
+  setCalendarLocation?: (calendarLocation: MonthCalendarProps) => void;
 }
 
 export interface MonthCalendarProps {
@@ -24,9 +32,11 @@ export interface CalendarLocation {
 }
 
 export interface CalendarContexts {
-  selectedDate: Date;
-  setSelectedDate?: React.Dispatch<React.SetStateAction<Date>>;
+  selectedDate: Date | null;
+  selectedEndDate?: Date | null;
+  setSelectedDate?: React.Dispatch<React.SetStateAction<Date | null>>;
+  setSelectedEndDate?: React.Dispatch<React.SetStateAction<Date | null>>;
   calendarLocation: CalendarLocation;
   setCalendarLocation?: React.Dispatch<React.SetStateAction<CalendarLocation>>;
-  isCurrentYearMonth: boolean;
+  rangeDate: boolean;
 }

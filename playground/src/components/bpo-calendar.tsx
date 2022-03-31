@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { Calendar as FCCalendar } from '../../../src';
 
-const Calendar = () => {
+const BpoCalendar = () => {
   return (
     <div
       css={css`
@@ -34,13 +34,16 @@ const Calendar = () => {
             &.selected {
               background-color: rgba(0, 255, 0, 0.3);
             }
+            &.selected-range {
+              background-color: gold;
+            }
           }
         }
       `}
     >
-      <FCCalendar navigator dateinput />
+      <FCCalendar rangeDate navigator />
     </div>
   );
 };
 
-export default Calendar;
+export default BpoCalendar;
