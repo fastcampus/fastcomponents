@@ -6,7 +6,6 @@ import { getMonth } from './utils';
 
 export const CalendarContext = createContext<CalendarContexts>({
   selectedDate: new Date(),
-  isCurrentYearMonth: true,
   calendarLocation: { year: new Date().getFullYear(), month: getMonth(new Date()) },
   rangeDate: false,
 });
@@ -30,10 +29,6 @@ const Calendar = ({
       month: date ? date.getMonth() : new Date().getMonth() + 1,
     }
   );
-
-  const isCurrentYearMonth = selectedDate
-    ? selectedDate.getFullYear() === calendarLocation.year && getMonth(selectedDate) === calendarLocation.month
-    : false;
 
   useEffect(() => {
     setDate && setDate(selectedDate);
@@ -69,7 +64,6 @@ const Calendar = ({
         setSelectedEndDate,
         calendarLocation,
         setCalendarLocation,
-        isCurrentYearMonth,
         selectedEndDate,
         rangeDate,
       }}
