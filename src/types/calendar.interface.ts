@@ -38,6 +38,5 @@ export interface CalendarContexts {
   setSelectedEndDate?: React.Dispatch<React.SetStateAction<Date | null>>;
   calendarLocation: CalendarLocation;
   setCalendarLocation?: React.Dispatch<React.SetStateAction<CalendarLocation>>;
-  isCurrentYearMonth: boolean;
   rangeDate: boolean;
 }
