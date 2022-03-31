@@ -4,17 +4,13 @@ import { CalendarContext } from './calendar';
 import type { DateCalendarProps } from 'src/types/calendar.interface';
 
 const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
-  const {
-    selectedDate,
-    isCurrentYearMonth,
-    calendarLocation,
-    setSelectedDate,
-    selectedEndDate,
-    setSelectedEndDate,
-    rangeDate,
-  } = useContext(CalendarContext);
+  const { selectedDate, calendarLocation, setSelectedDate, selectedEndDate, setSelectedEndDate, rangeDate } =
+    useContext(CalendarContext);
 
-  const swapSelectedDate = (selectedEndDate) => {
+  const currentDate =
+    dateNumber > 0 ? DateUtil.parse(`${calendarLocation.year}-${calendarLocation.month}-${dateNumber}`) : null;
+
+  const swapSelectedDate = (selectedEndDate: Date | null) => {
     const tempSelectedEndDate = selectedEndDate;
     setSelectedEndDate && setSelectedEndDate(selectedDate);
     setSelectedDate && setSelectedDate(tempSelectedEndDate);
@@ -23,11 +19,17 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
   return (
     <div
       className={`date-calendar ${className} ${
-        selectedDate?.getDate() === dateNumber || (selectedEndDate?.getDate() === dateNumber && isCurrentYearMonth)
+        currentDate &&
+        ((selectedDate && DateUtil.diff(selectedDate, currentDate, 'day') === 0) ||
+          (selectedEndDate && DateUtil.diff(selectedEndDate, currentDate, 'day') === 0))
           ? 'selected'
           : ''
       } ${
-        selectedDate && selectedDate.getDate() < dateNumber && selectedEndDate && selectedEndDate.getDate() > dateNumber
+        currentDate &&
+        selectedDate &&
+        DateUtil.diff(selectedDate, currentDate, 'day') > 0 &&
+        selectedEndDate &&
+        DateUtil.diff(selectedEndDate, currentDate, 'day') < 0
           ? 'selected-range'
           : ''
       }`}
