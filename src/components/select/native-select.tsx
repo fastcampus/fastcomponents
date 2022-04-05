@@ -34,8 +34,6 @@ const NativeSelect = ({
       {...restProps}
     >
       <option defaultValue="">{placeholder}</option>
-        {placeholder}
-      </option>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.label}

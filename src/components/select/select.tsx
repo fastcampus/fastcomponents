@@ -56,7 +56,6 @@ const Select = ({
         setSelectedValue={setSelectedValue}
         multiple={multiple}
         options={options}
-        isAllSelect={selectAll}
         size={size}
         placeholder={placeholder}
         {...restProps}
