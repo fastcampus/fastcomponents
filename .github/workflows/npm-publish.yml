@@ -15,29 +15,7 @@ env:
   PACKAGE_TOKEN: ${{ secrets.GH_NPM_TOKEN }}
 
 jobs:
-  check-pusher:
-    defaults:
-      run:
-        working-directory: .
-    runs-on: ubuntu-latest
-    outputs:
-      PUSH_TOKEN_OWNER: ${{steps.push-token-owner.outputs.PUSH_TOKEN_OWNER}}
-    steps:
-      - run: |
-          PUSH_TOKEN_OWNER=`gh api user | jq -r .login`
-          echo "::set-output name=PUSH_TOKEN_OWNER::$PUSH_TOKEN_OWNER"
-
-          echo "PUSH_TOKEN_OWNER is $PUSH_TOKEN_OWNER"
-          echo "PUSHER is $PUSHER"
-        id: push-token-owner
-        env:
-          GH_TOKEN: ${{ env.PUSH_TOKEN }}
-          PUSHER: ${{ github.event.pusher.name }}
-
   ci-label-test:
-    needs: check-pusher
-    # 봇이 액션을 일으키는 것을 방지 (푸시한 사람이 토큰 OWNER인 경우 작동하지 않음)
-    if: github.event.pusher.name != needs.check-pusher.outputs.PUSH_TOKEN_OWNER
     outputs:
       has_ci_skip_label: ${{contains(fromJSON(steps.PR.outputs.pr).labels.*.name, 'ci-skip')}}
     runs-on: ubuntu-latest
@@ -91,7 +69,7 @@ jobs:
           PACKAGE_NAME=$(jq -r .name package.json)
           PACKAGE_VERSION=$(jq -r .version package.json)
 
-          git commit -am "$PACKAGE_NAME: bump up to $PACKAGE_VERSION"
+          git commit -am "$PACKAGE_NAME: bump up to $PACKAGE_VERSION\n[ci skip]"
           git pull --rebase
           git push origin
       - name: publish
