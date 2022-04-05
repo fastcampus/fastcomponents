@@ -26,7 +26,6 @@ export interface NativeSelectProps {
   setSelectedValue: React.Dispatch<React.SetStateAction<Value[]>>;
   multiple: boolean;
   options: Option[];
-  isAllSelect: boolean;
   size: number;
   className?: string;
   placeholder: string;
