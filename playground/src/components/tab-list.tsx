@@ -21,7 +21,7 @@ const TabList = () => {
   ];
   const [selectedTab, setSelectedTab] = useState<Tab>({ name: '', slug: '' });
   const navigate = useNavigate();
-  const setTabNUrl = (tab) => {
+  const setTabNUrl = (tab: Tab) => {
     setSelectedTab(tab);
     navigate(tab.slug);
   };
