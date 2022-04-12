@@ -39,16 +39,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.([j|t]sx?|svg)$/,
-        use: ['babel-loader'],
-        exclude: (path) => {
-          if (path.includes('node_modules')) {
-            return !path.includes('@fastcampus');
-          }
-          return false;
-        },
-      },
-      {
         test: /\.(tsx?)$/,
         use: [
           {
@@ -64,7 +54,6 @@ module.exports = {
         test: /\.svg$/,
         loader: '@svgr/webpack',
         options: {
-          babel: false,
           svgo: {
             plugins: [
               {
@@ -79,7 +68,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(svg|jpg|jpeg|png)$/,
+        test: /\.(svg|jpe?g|png)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
