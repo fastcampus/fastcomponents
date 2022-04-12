@@ -13,7 +13,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",

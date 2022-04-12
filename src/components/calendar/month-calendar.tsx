@@ -9,7 +9,7 @@ const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
   const firstWeekLeftPad = date.getDay();
   const notFirstWeekLeftPad = 0;
 
-  const monthLastDate = DateUtil.endOfMonth(date).getDate();
+  const monthLastDate = DateUtil.endOf(date, 'month').getDate();
   const secondWeekStartDate = DAY_COUNT_OF_ONE_WEEK + 1 - firstWeekLeftPad;
   const firstWeekDateCnt = DAY_COUNT_OF_ONE_WEEK - firstWeekLeftPad;
   const weekCnt = Math.ceil((monthLastDate + firstWeekLeftPad) / DAY_COUNT_OF_ONE_WEEK);

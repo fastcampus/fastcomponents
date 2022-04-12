@@ -22,7 +22,7 @@ const DateInput = () => {
     <Input
       className="date-input"
       type="date"
-      value={selectedDate ? DateUtil.format(selectedDate, { format: 'YYYY-MM-DD' }) : undefined}
+      value={selectedDate ? DateUtil.format(selectedDate, { format: 'YYYY-MM-DD' }) : ''}
       onChange={dateInputOnChangeHandler}
     />
   );

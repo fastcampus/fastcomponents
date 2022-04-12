@@ -1,7 +1,7 @@
 import React from 'react';
 import type { CheckboxProps } from '../../types/checkbox.interface';
 
-const Checkbox = ({ checked, setChecked, disabled = false, className, ...restProps }: CheckboxProps) => {
+const Checkbox = ({ checked, setChecked, label, disabled = false, className = '', ...restProps }: CheckboxProps) => {
   return (
     <label
       className={`fc-checkbox ${className} ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''}`}
@@ -14,6 +14,7 @@ const Checkbox = ({ checked, setChecked, disabled = false, className, ...restPro
         onChange={(e) => setChecked(e.target.checked)}
         {...restProps}
       />
+      {label ? <span>{label}</span> : null}
     </label>
   );
 };

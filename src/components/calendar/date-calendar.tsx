@@ -8,7 +8,14 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
     useContext(CalendarContext);
 
   const currentDate =
-    dateNumber > 0 ? DateUtil.parse(`${calendarLocation.year}-${calendarLocation.month}-${dateNumber}`) : null;
+    dateNumber > 0
+      ? DateUtil.parse(
+          `${calendarLocation.year}-${String(calendarLocation.month).padStart(2, '0')}-${String(dateNumber).padStart(
+            2,
+            '0'
+          )}`
+        )
+      : null;
 
   const swapSelectedDate = (selectedEndDate: Date | null) => {
     const tempSelectedEndDate = selectedEndDate;

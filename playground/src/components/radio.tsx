@@ -33,12 +33,9 @@ const Radio = () => {
           }
           .fc-radio {
             display: flex;
-            label {
-              display: inline-block;
-              background-color: red;
-              width: 2rem;
-              height: 2rem;
-            }
+            background-color: red;
+            width: 2rem;
+            height: 2rem;
             input:checked + label {
               background-color: green;
             }
@@ -54,12 +51,13 @@ const Radio = () => {
           return (
             <div key={radio.label}>
               <FCRadio
+                checked={selectedRadioValue === radio.label}
                 name={'test'}
                 value={radio.label}
+                label={radio.label}
                 disabled={false}
                 setValue={(value) => setSelectedRadioValue(value)}
               />
-              <span>{radio.label}</span>
             </div>
           );
         })}
