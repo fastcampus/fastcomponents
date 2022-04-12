@@ -1,9 +1,9 @@
-import React from 'react';
-
 export interface RadioProps {
-  disabled: boolean;
+  checked: boolean;
+  disabled?: boolean;
   name: string;
   setValue: (arg0: string | number) => void;
   value: string | number;
+  label?: string | number;
   className?: string;
 }
