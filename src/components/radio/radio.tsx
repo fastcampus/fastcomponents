@@ -14,7 +14,7 @@ const Radio = ({ name, disabled, label, value, checked, setValue, className = ''
         onChange={(e) => setValue(e.target.value)}
         {...restProps}
       />
-      <span>{label}</span>
+      {label ? <span>{label}</span> : null}
     </label>
   );
 };
