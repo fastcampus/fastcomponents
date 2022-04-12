@@ -14,7 +14,7 @@ const Checkbox = ({ checked, setChecked, label, disabled = false, className = ''
         onChange={(e) => setChecked(e.target.checked)}
         {...restProps}
       />
-      <span>{label}</span>
+      {label ? <span>{label}</span> : null}
     </label>
   );
 };
