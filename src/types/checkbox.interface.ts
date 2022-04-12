@@ -3,4 +3,5 @@ export interface CheckboxProps {
   disabled?: boolean;
   setChecked: (arg0: boolean) => void;
   className?: string;
+  label?: string | number;
 }
