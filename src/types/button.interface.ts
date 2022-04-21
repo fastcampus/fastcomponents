@@ -4,4 +4,5 @@ export interface ButtonProps {
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  type?: 'submit' | 'reset' | 'button';
 }
