@@ -20,6 +20,7 @@ export interface CustomSelectProps {
   multiple: boolean;
   className?: string;
   placeholder: string;
+  disabled?: boolean;
 }
 
 export interface NativeSelectProps {
@@ -29,6 +30,7 @@ export interface NativeSelectProps {
   size: number;
   className?: string;
   placeholder: string;
+  disabled?: boolean;
 }
 
 export interface SelectProps {
@@ -42,4 +44,5 @@ export interface SelectProps {
   size?: number;
   className?: string;
   placeholder?: string;
+  disabled?: boolean;
 }

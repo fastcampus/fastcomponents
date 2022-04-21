@@ -14,6 +14,7 @@ const Select = ({
   setSelectAll,
   className,
   placeholder = '선택',
+  disabled = false,
   ...restProps
 }: SelectProps) => {
   const setInitialValue = () => {
@@ -57,6 +58,7 @@ const Select = ({
         multiple={multiple}
         options={options}
         size={size}
+        disabled={disabled}
         placeholder={placeholder}
         {...restProps}
       />
@@ -68,6 +70,7 @@ const Select = ({
       selectedValue={selectedValue}
       setSelectedValue={setSelectedValue}
       options={options}
+      disabled={disabled}
       size={size}
       multiple={multiple}
       placeholder={placeholder}
