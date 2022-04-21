@@ -35,6 +35,7 @@ export interface NativeSelectProps {
 
 export interface SelectProps {
   options: Option[];
+  value?: Value;
   initialSelectedValue?: Value | Value[];
   setValue: (args0: Value[]) => void;
   nativeSelect?: boolean;

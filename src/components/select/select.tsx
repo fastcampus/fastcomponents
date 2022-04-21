@@ -10,6 +10,7 @@ const Select = ({
   nativeSelect = false,
   multiple = false,
   size = 0,
+  value,
   selectAll = false,
   setSelectAll,
   className,
@@ -35,6 +36,14 @@ const Select = ({
     setValue(selectedValue);
     setSelectAll && setSelectAll(allOptionSelected);
   }, [selectedValue]);
+
+  useEffect(() => {
+    if (value) {
+      setSelectedValue([value]);
+    } else {
+      setSelectedValue([]);
+    }
+  }, [value]);
 
   useEffect(() => {
     if (selectAll) {
