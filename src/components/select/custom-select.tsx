@@ -76,7 +76,10 @@ const CustomSelect = ({
 
   return (
     <div className={`fc-select ${className}`} {...restProps}>
-      <div className={`preview ${disabled ? 'disabled' : ''}`} onClick={previewClickHandler}>
+      <div
+        className={`preview ${isOptionVisible ? 'open' : ''} ${disabled ? 'disabled' : ''}`}
+        onClick={previewClickHandler}
+      >
         {selectedValue.length > 0 ? selectedValue : placeholder}
       </div>
 
