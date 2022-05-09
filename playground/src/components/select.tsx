@@ -9,11 +9,13 @@ const Select = ({
   multiple = false,
   size = 0,
   initialSelectedValue,
+  disabled = false,
 }: {
   nativeSelect?: boolean;
   multiple?: boolean;
   size?: number;
   initialSelectedValue?: Value | Value[];
+  disabled?: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState<Value[]>([]);
   const [isAllSelect, setIsAllSelect] = useState<boolean>(false);
@@ -74,6 +76,10 @@ const Select = ({
             border: 0.2rem solid black;
             .preview {
               height: 2rem;
+
+              &.disabled {
+                background-color: gray;
+              }
             }
             .selected {
               background-color: rgba(0, 255, 0, 0.2);
@@ -103,6 +109,7 @@ const Select = ({
           multiple={multiple}
           size={size}
           selectAll={isAllSelect}
+          disabled={disabled}
           setSelectAll={setIsAllSelect}
         />
       </div>

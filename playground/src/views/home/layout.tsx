@@ -32,7 +32,9 @@ const HomeLayout = () => {
         <h1 style={{ fontSize: '4rem' }}>Select size default</h1>
         <Select />
         <Select multiple={true} />
+        <Select disabled multiple={true} />
         <Select nativeSelect />
+        <Select disabled nativeSelect />
         <Select nativeSelect multiple={true} />
       </div>
       <div>

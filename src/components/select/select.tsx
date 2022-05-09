@@ -10,10 +10,12 @@ const Select = ({
   nativeSelect = false,
   multiple = false,
   size = 0,
+  value,
   selectAll = false,
   setSelectAll,
   className,
   placeholder = '선택',
+  disabled = false,
   ...restProps
 }: SelectProps) => {
   const setInitialValue = () => {
@@ -34,6 +36,14 @@ const Select = ({
     setValue(selectedValue);
     setSelectAll && setSelectAll(allOptionSelected);
   }, [selectedValue]);
+
+  useEffect(() => {
+    if (value) {
+      setSelectedValue([value]);
+    } else {
+      setSelectedValue([]);
+    }
+  }, [value]);
 
   useEffect(() => {
     if (selectAll) {
@@ -57,6 +67,7 @@ const Select = ({
         multiple={multiple}
         options={options}
         size={size}
+        disabled={disabled}
         placeholder={placeholder}
         {...restProps}
       />
@@ -68,6 +79,7 @@ const Select = ({
       selectedValue={selectedValue}
       setSelectedValue={setSelectedValue}
       options={options}
+      disabled={disabled}
       size={size}
       multiple={multiple}
       placeholder={placeholder}

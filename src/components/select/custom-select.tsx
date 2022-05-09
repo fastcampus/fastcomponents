@@ -47,12 +47,16 @@ const CustomSelect = ({
   size,
   multiple,
   placeholder,
+  disabled,
   ...restProps
 }: CustomSelectProps) => {
   const [isOptionVisible, setIsOptionVisible] = useState(false);
   const [customOptionHeight, customOptionRef] = useElementHeight();
 
-  const previewClickHandler = () => setIsOptionVisible((state) => !state);
+  const previewClickHandler = () => {
+    if (disabled) return;
+    setIsOptionVisible((state) => !state);
+  };
 
   const optionClickHandler = (option: Option) => () => {
     if (multiple) {
@@ -72,7 +76,10 @@ const CustomSelect = ({
 
   return (
     <div className={`fc-select ${className}`} {...restProps}>
-      <div className="preview" onClick={previewClickHandler}>
+      <div
+        className={`preview ${isOptionVisible ? 'open' : ''} ${disabled ? 'disabled' : ''}`}
+        onClick={previewClickHandler}
+      >
         {selectedValue.length > 0 ? selectedValue : placeholder}
       </div>
 

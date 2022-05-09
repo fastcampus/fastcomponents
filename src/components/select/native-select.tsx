@@ -8,6 +8,7 @@ const NativeSelect = ({
   options,
   size,
   placeholder,
+  disabled,
   ...restProps
 }: NativeSelectProps) => {
   const setValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -31,6 +32,7 @@ const NativeSelect = ({
       onChange={setValueHandler}
       multiple={multiple}
       size={size}
+      disabled={disabled}
       {...restProps}
     >
       <option defaultValue="">{placeholder}</option>
