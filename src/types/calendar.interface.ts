@@ -1,3 +1,5 @@
+import { TimeZoneType } from '@day1co/pebbles';
+
 export interface CalendarProps {
   date?: Date;
   endDate?: Date;
@@ -8,6 +10,7 @@ export interface CalendarProps {
   setEndDate?: (date: Date | null) => void;
   calendarLocation?: MonthCalendarProps;
   setCalendarLocation?: (calendarLocation: MonthCalendarProps) => void;
+  timeZone?: TimeZoneType;
 }
 
 export interface MonthCalendarProps {
@@ -39,4 +42,5 @@ export interface CalendarContexts {
   calendarLocation: CalendarLocation;
   setCalendarLocation?: React.Dispatch<React.SetStateAction<CalendarLocation>>;
   rangeDate: boolean;
+  timeZone?: TimeZoneType;
 }
