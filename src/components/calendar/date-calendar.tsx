@@ -42,7 +42,12 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
       }`}
       onClick={() => {
         if (setSelectedEndDate && dateNumber > 0 && rangeDate && selectedDate && !selectedEndDate) {
-          const newSelectedEndDate = new Date(`${calendarLocation.year}-${calendarLocation.month}-${dateNumber}`);
+          const newSelectedEndDate = DateUtil.parse(
+            `${calendarLocation.year}-${String(calendarLocation.month).padStart(2, '0')}-${String(dateNumber).padStart(
+              2,
+              '0'
+            )}`
+          );
           if (DateUtil.diff(selectedDate, newSelectedEndDate, 'day') < 0) {
             swapSelectedDate(newSelectedEndDate);
             return;
@@ -51,7 +56,13 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
           return;
         }
         if (setSelectedDate && dateNumber > 0) {
-          setSelectedDate(new Date(`${calendarLocation.year}-${calendarLocation.month}-${dateNumber}`));
+          setSelectedDate(
+            DateUtil.parse(
+              `${calendarLocation.year}-${String(calendarLocation.month).padStart(2, '0')}-${String(
+                dateNumber
+              ).padStart(2, '0')}`
+            )
+          );
           setSelectedEndDate && setSelectedEndDate(null);
           return;
         }
