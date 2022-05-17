@@ -5,7 +5,7 @@ import { CalendarContext } from './calendar';
 import { getMonth } from './utils';
 
 const DateInput = () => {
-  const { selectedDate, setCalendarLocation, setSelectedDate } = useContext(CalendarContext);
+  const { selectedDate, setCalendarLocation, setSelectedDate, timeZone } = useContext(CalendarContext);
 
   const dateInputOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!setCalendarLocation) return;
@@ -18,11 +18,14 @@ const DateInput = () => {
       // nothing
     }
   };
+
   return (
     <Input
       className="date-input"
       type="date"
-      value={selectedDate ? DateUtil.format(selectedDate, { format: 'YYYY-MM-DD' }) : ''}
+      value={
+        selectedDate ? DateUtil.format(selectedDate, { format: 'YYYY-MM-DD', isUtc: false, timeZone: timeZone }) : ''
+      }
       onChange={dateInputOnChangeHandler}
     />
   );
