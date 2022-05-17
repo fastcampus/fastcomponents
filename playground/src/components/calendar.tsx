@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { Calendar as FCCalendar } from '../../../src';
+import { DateUtil } from '@day1co/pebbles';
 
 const Calendar = () => {
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   return (
     <div>
-      <div>SELECTED START DATE : {JSON.stringify(startDate)}</div>
-      <div>SELECTED END DATE : {JSON.stringify(endDate)}</div>
+      <div>
+        SELECTED START DATE :{' '}
+        {startDate
+          ? DateUtil.format(startDate, { format: 'YYYY-MM-DD:HH:mm:SS', isUtc: false, timeZone: 'Asia/Seoul' })
+          : ''}
+      </div>
+      <div>
+        SELECTED END DATE :{' '}
+        {endDate
+          ? DateUtil.format(endDate, { format: 'YYYY-MM-DD:HH:mm:SS', isUtc: false, timeZone: 'Asia/Seoul' })
+          : ''}
+      </div>
       <div
         css={css`
           display: flex;
