@@ -5,6 +5,7 @@ import CodeEditor from './components/code-editor';
 import FileUploader from './components/file-uploader';
 import Input from './components/input';
 import Pagination from './components/pagination';
+import Player from './components/player';
 import Radio from './components/radio';
 import Select from './components/select';
 import Sort from './components/sort';
@@ -47,6 +48,7 @@ export {
   CodeEditor,
   Table,
   Pagination,
+  Player,
   Sort,
   Radio,
   Select,
