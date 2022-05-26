@@ -37,6 +37,7 @@ const KollusPlayer = ({
 }: Omit<PlayerProps, 'vendor'>) => {
   const iframeEl = useRef<HTMLIFrameElement | null>(null);
   const [vgController, setVgController] = useState<VgController | null>(null);
+  const [cachedPosition, setCachedPosition] = useState(0);
 
   useEffect(() => {
     loadScript(KOLLUS_SCRIPT_URL).then(() => {
@@ -65,6 +66,9 @@ const KollusPlayer = ({
           }
         })
         .on(VG_CONTROLLER_EVENT.PLAY, () => {
+          if (cachedPosition > 0) {
+            vgController.play(cachedPosition);
+          }
           if (onPlay) {
             onPlay();
           }
@@ -100,7 +104,7 @@ const KollusPlayer = ({
           }
         });
     }
-  }, [vgController]);
+  }, [vgController, cachedPosition]);
 
   useEffect(() => {
     if (command === 'play') {
@@ -117,9 +121,7 @@ const KollusPlayer = ({
 
   useEffect(() => {
     if (position && position > 0) {
-      if (vgController) {
-        vgController.play(position);
-      }
+      setCachedPosition(position);
     }
   }, [position]);
 
