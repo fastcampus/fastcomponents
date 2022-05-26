@@ -21,6 +21,7 @@ const VG_CONTROLLER_EVENT = {
 const KollusPlayer = ({
   className,
   src,
+  command,
   onScriptLoaded,
   onLoaded,
   onReady,
@@ -99,6 +100,19 @@ const KollusPlayer = ({
         });
     }
   }, [vgController]);
+
+  useEffect(() => {
+    if (command === 'play') {
+      if (vgController) {
+        vgController.play();
+      }
+    }
+    if (command === 'pause') {
+      if (vgController) {
+        vgController.pause();
+      }
+    }
+  }, [command]);
 
   return (
     <div className={`fc-player ${className}`} {...restProps}>
