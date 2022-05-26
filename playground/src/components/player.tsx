@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Player as FCPlayer } from '../../../src';
+import type { PlayerProgress } from '../../../src';
 
 const Player = () => {
   const onScriptLoaded = () => {
@@ -18,7 +19,8 @@ const Player = () => {
   const onPause = () => {
     console.log('onPause');
   };
-  const onProgress = () => {
+  const onProgress = (progress: PlayerProgress) => {
+    console.log(progress);
     console.log('onProgress');
   };
   const onDone = () => {
