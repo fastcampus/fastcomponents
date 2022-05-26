@@ -79,9 +79,9 @@ const KollusPlayer = ({
       });
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      vgController.on(VG_CONTROLLER_EVENT.PROGRESS, () => {
+      vgController.on(VG_CONTROLLER_EVENT.PROGRESS, (percent: number, position: number, duration: number) => {
         if (onProgress) {
-          onProgress();
+          onProgress({ percent, position, duration });
         }
       });
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
