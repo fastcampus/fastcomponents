@@ -16,6 +16,6 @@ export interface PlayerProps {
   onDone?: () => void;
   onIntroVideoDone?: () => void;
   onVolumeChanged?: () => void;
-  onSpeedChaned?: () => void;
+  onSpeedChanged?: () => void;
   onSeeked?: () => void;
 }
