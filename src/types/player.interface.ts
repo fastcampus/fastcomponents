@@ -12,10 +12,16 @@ export interface PlayerProps {
   onReady?: () => void;
   onPlay?: () => void;
   onPause?: () => void;
-  onProgress?: () => void;
+  onProgress?: (args: PlayerProgress) => void;
   onDone?: () => void;
   onIntroVideoDone?: () => void;
   onVolumeChanged?: () => void;
   onSpeedChanged?: () => void;
   onSeeked?: () => void;
+}
+
+export interface PlayerProgress {
+  percent: number;
+  position: number;
+  duration: number;
 }
