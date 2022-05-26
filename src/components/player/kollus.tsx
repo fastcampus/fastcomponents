@@ -48,6 +48,10 @@ const KollusPlayer = ({
         );
       }
     });
+
+    return function unsetVgController() {
+      setVgController(null);
+    };
   }, []);
 
   useEffect(() => {
@@ -104,6 +108,20 @@ const KollusPlayer = ({
           }
         });
     }
+
+    return function detachVgControllerEvent() {
+      if (vgController) {
+        vgController.off(VG_CONTROLLER_EVENT.LOADED);
+        vgController.off(VG_CONTROLLER_EVENT.READY);
+        vgController.off(VG_CONTROLLER_EVENT.PLAY);
+        vgController.off(VG_CONTROLLER_EVENT.PAUSE);
+        vgController.off(VG_CONTROLLER_EVENT.PROGRESS);
+        vgController.off(VG_CONTROLLER_EVENT.DONE);
+        vgController.off(VG_CONTROLLER_EVENT.VOLUME_CHANGE);
+        vgController.off(VG_CONTROLLER_EVENT.SPEED_CHANGE);
+        vgController.off(VG_CONTROLLER_EVENT.SEEKED);
+      }
+    };
   }, [vgController, cachedPosition]);
 
   useEffect(() => {
