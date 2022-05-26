@@ -56,8 +56,6 @@ const KollusPlayer = ({
 
   useEffect(() => {
     if (vgController) {
-      console.log('vgController init');
-
       vgController
         .on(VG_CONTROLLER_EVENT.LOADED, () => {
           if (onLoaded) {
