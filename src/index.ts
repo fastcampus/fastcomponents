@@ -28,7 +28,7 @@ export type { FileSize, DropzoneProps, FileUploaderProps } from './types/file-up
 export type { InputType, InputProps } from './types/input.interface';
 export type { TextAreaProps } from './types/textarea.interface';
 export type { PaginationProps } from './types/pagination.interface';
-export type { PlayerProps, PlayerProgress } from './types/player.interface';
+export type { PlayerProps, PlayerProgress, CommandType } from './types/player.interface';
 export type { RadioProps } from './types/radio.interface';
 export type {
   Value,

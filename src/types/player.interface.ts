@@ -1,6 +1,6 @@
 export interface PlayerProps {
   src: string;
-  command: 'none' | 'play' | 'pause';
+  command: CommandType;
   vendor?: 'KOLLUS' | 'YOUTUBE';
   volume?: number;
   speed?: number;
@@ -25,3 +25,5 @@ export interface PlayerProgress {
   position: number;
   duration: number;
 }
+
+export type CommandType = 'none' | 'play' | 'pause';
