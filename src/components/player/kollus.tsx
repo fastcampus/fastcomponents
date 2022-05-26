@@ -22,6 +22,7 @@ const KollusPlayer = ({
   className,
   src,
   command,
+  position,
   onScriptLoaded,
   onLoaded,
   onReady,
@@ -113,6 +114,14 @@ const KollusPlayer = ({
       }
     }
   }, [command]);
+
+  useEffect(() => {
+    if (position && position > 0) {
+      if (vgController) {
+        vgController.play(position);
+      }
+    }
+  }, [position]);
 
   return (
     <div className={`fc-player ${className}`} {...restProps}>

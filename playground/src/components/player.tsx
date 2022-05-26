@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { css } from '@emotion/react';
 import { Player as FCPlayer } from '../../../src';
 import type { PlayerProgress, CommandType } from '../../../src';
 
 const Player = () => {
+  const [command, setCommand] = useState<CommandType>('none');
+  const [position, setPosition] = useState(0);
+  const inputEl = useRef<HTMLInputElement | null>(null);
+
   const onScriptLoaded = () => {
     console.log('onScriptLoaded');
   };
@@ -41,8 +45,6 @@ const Player = () => {
     console.log('onSeeked');
   };
 
-  const [command, setCommand] = useState<CommandType>('none');
-
   return (
     <div
       css={css`
@@ -56,6 +58,7 @@ const Player = () => {
       <FCPlayer
         src="https://v.kr.kollus.com/s?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdWlkIjoic3VqaW5fcGFyay0xNzQwMjUiLCJleHB0IjoxNjUzNTkwNzQ2LCJtYyI6W3sibWNrZXkiOiJzSTB4RlVEQyIsIm1jcGYiOiJmYXN0Y2FtcC1wYzEtaGQtMSJ9XX0.5LVVqQt3F3LX1O_dR_a9UfJUlKgL0eSXEhKI2qSeRc0&custom_key=0b50155632326ca34e42550f10d6fca2c42c7b62a47eee4841aabd0cd1a913ea&s=0"
         command={command}
+        position={position}
         className="kollus-player"
         onScriptLoaded={onScriptLoaded}
         onLoaded={onLoaded}
@@ -72,6 +75,16 @@ const Player = () => {
       <div>
         <button onClick={() => setCommand('play')}>Play</button>
         <button onClick={() => setCommand('pause')}>Pause</button>
+        <input type="number" ref={inputEl} />
+        <button
+          onClick={() => {
+            if (inputEl && inputEl.current) {
+              setPosition(Number(inputEl.current.value));
+            }
+          }}
+        >
+          Position 이동
+        </button>
       </div>
     </div>
   );

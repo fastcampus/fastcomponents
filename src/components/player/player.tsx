@@ -7,6 +7,7 @@ const Player = ({
   src,
   command,
   className,
+  position,
   onScriptLoaded,
   onLoaded,
   ...restProps
@@ -18,6 +19,7 @@ const Player = ({
       onScriptLoaded={onScriptLoaded}
       onLoaded={onLoaded}
       command={command}
+      position={position}
       {...restProps}
     />
   ) : (
