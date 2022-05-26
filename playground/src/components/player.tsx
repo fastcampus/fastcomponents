@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import { Player as FCPlayer } from '../../../src';
 import type { PlayerProgress, CommandType } from '../../../src';
@@ -6,7 +6,6 @@ import type { PlayerProgress, CommandType } from '../../../src';
 const Player = () => {
   const [command, setCommand] = useState<CommandType>('none');
   const [position, setPosition] = useState(0);
-  const inputEl = useRef<HTMLInputElement | null>(null);
 
   const onScriptLoaded = () => {
     console.log('onScriptLoaded');
@@ -75,16 +74,7 @@ const Player = () => {
       <div>
         <button onClick={() => setCommand('play')}>Play</button>
         <button onClick={() => setCommand('pause')}>Pause</button>
-        <input type="number" ref={inputEl} />
-        <button
-          onClick={() => {
-            if (inputEl && inputEl.current) {
-              setPosition(Number(inputEl.current.value));
-            }
-          }}
-        >
-          Position 이동
-        </button>
+        <input type="number" value={position} onChange={(e) => setPosition(Number(e.target.value))} />
       </div>
     </div>
   );
