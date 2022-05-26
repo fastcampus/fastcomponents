@@ -23,6 +23,6 @@
     "baseUrl": "./",
     "outDir": "./dist"
   },
-  "include": ["./src"],
+  "include": ["./src", "playground/src/fastcampus.d.ts"],
   "exclude": ["node_modules", "dist", "playground"]
 }
