@@ -1,17 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { loadScript } from '@day1co/browser-util';
 import type { PlayerProps } from '../../types/player.interface';
 
-const KOLLUS_SCRIPT_URL = 'https://file.kollus.com/vgcontroller/vg-controller-client.1.1.12.min.js';
+const KOLLUS_SCRIPT_URL = 'https://file.kollus.com/vgcontroller/vg-controller-client.latest.min.js';
 
-const KollusPlayer = ({ className, src, ...restProps }: Omit<PlayerProps, 'vendor'>) => {
+const KollusPlayer = ({ className, src, onScriptLoaded, ...restProps }: Omit<PlayerProps, 'vendor'>) => {
+  const iframeEl = useRef(null);
+  const [vgController, setVgController] = useState(null);
+
   useEffect(() => {
-    console.log(src);
     loadScript(KOLLUS_SCRIPT_URL).then(() => {
-      console.log('script added');
+      if (onScriptLoaded) {
+        onScriptLoaded();
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        setVgController(new window.VgControllerClient({ target_window: iframeEl.current }));
+        // console.log(iframeEl.current);
+      }
     });
   }, []);
-  return <div className={`fc-player ${className}`} {...restProps}></div>;
+
+  return (
+    <div className={`fc-player ${className}`} {...restProps}>
+      <iframe ref={iframeEl} />
+    </div>
+  );
 };
 
 export default KollusPlayer;
