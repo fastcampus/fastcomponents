@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { css } from '@emotion/react';
 import { loadScript } from '@day1co/browser-util';
 import type { PlayerProps } from '../../types/player.interface';
 
@@ -93,16 +94,16 @@ const KollusPlayer = ({
       });
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      vgController.on(VG_CONTROLLER_EVENT.VOLUME_CHANGE, () => {
+      vgController.on(VG_CONTROLLER_EVENT.VOLUME_CHANGE, (volume) => {
         if (onVolumeChanged) {
-          onVolumeChanged();
+          onVolumeChanged(volume);
         }
       });
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      vgController.on(VG_CONTROLLER_EVENT.SPEED_CHANGE, () => {
+      vgController.on(VG_CONTROLLER_EVENT.SPEED_CHANGE, (speed) => {
         if (onSpeedChanged) {
-          onSpeedChanged();
+          onSpeedChanged(speed);
         }
       });
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -117,7 +118,17 @@ const KollusPlayer = ({
 
   return (
     <div className={`fc-player ${className}`} {...restProps}>
-      <iframe src={src} ref={iframeEl} allow="autoplay" allowFullScreen />
+      <iframe
+        css={css`
+          width: 100%;
+          height: 100%;
+          border: none;
+        `}
+        src={src}
+        ref={iframeEl}
+        allow="autoplay"
+        allowFullScreen
+      />
     </div>
   );
 };
