@@ -16,4 +16,7 @@ export interface VgController {
   on(eventType: string, callback: (is_muted: boolean) => void): this;
   on(eventType: string, callback: (volume: number) => void): this;
   on(eventType: string, callback: (speed: number) => void): this;
+  play(): void;
+  play(position: number): void;
+  pause(): void;
 }
