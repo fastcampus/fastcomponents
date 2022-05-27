@@ -10,16 +10,34 @@ const Player = ({
   position,
   onScriptLoaded,
   onLoaded,
+  onReady,
+  onPlay,
+  onPause,
+  onProgress,
+  onDone,
+  onIntroVideoDone,
+  onVolumeChanged,
+  onSpeedChanged,
+  onSeeked,
   ...restProps
 }: PlayerProps) => {
   return vendor === 'KOLLUS' ? (
     <KollusPlayer
       className={className}
       src={src}
-      onScriptLoaded={onScriptLoaded}
-      onLoaded={onLoaded}
       command={command}
       position={position}
+      onScriptLoaded={onScriptLoaded}
+      onLoaded={onLoaded}
+      onReady={onReady}
+      onPlay={onPlay}
+      onPause={onPause}
+      onProgress={onProgress}
+      onDone={onDone}
+      onIntroVideoDone={onIntroVideoDone}
+      onVolumeChanged={onVolumeChanged}
+      onSpeedChanged={onSpeedChanged}
+      onSeeked={onSeeked}
       {...restProps}
     />
   ) : (
