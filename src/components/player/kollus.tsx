@@ -40,14 +40,20 @@ const KollusPlayer = ({
   const [cachedPosition, setCachedPosition] = useState(0);
 
   useEffect(() => {
-    loadScript(KOLLUS_SCRIPT_URL).then(() => {
-      if (onScriptLoaded) {
-        onScriptLoaded();
-        setVgController(
-          new window.VgControllerClient({ target_window: (iframeEl.current as HTMLIFrameElement).contentWindow })
-        );
-      }
-    });
+    loadScript(KOLLUS_SCRIPT_URL)
+      .then(() => {
+        if (onScriptLoaded) {
+          onScriptLoaded();
+          setVgController(
+            new window.VgControllerClient({ target_window: (iframeEl.current as HTMLIFrameElement).contentWindow })
+          );
+        }
+      })
+      .catch((error: string) => {
+        if (error === 'REJECTED: Already Installed' && onScriptLoaded) {
+          onScriptLoaded();
+        }
+      });
 
     return function unsetVgController() {
       setVgController(null);
