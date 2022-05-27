@@ -33,6 +33,7 @@ const KollusPlayer = ({
   onVolumeChanged,
   onSpeedChanged,
   onSeeked,
+  errorHandler,
   ...restProps
 }: Omit<PlayerProps, 'vendor'>) => {
   const iframeEl = useRef<HTMLIFrameElement | null>(null);
@@ -50,8 +51,8 @@ const KollusPlayer = ({
         }
       })
       .catch((error: string) => {
-        if (error === 'REJECTED: Already Installed' && onScriptLoaded) {
-          onScriptLoaded();
+        if (errorHandler) {
+          errorHandler(error);
         }
       });
 
