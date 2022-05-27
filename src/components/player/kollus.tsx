@@ -45,14 +45,18 @@ const KollusPlayer = ({
       .then(() => {
         if (onScriptLoaded) {
           onScriptLoaded();
-          setVgController(
-            new window.VgControllerClient({ target_window: (iframeEl.current as HTMLIFrameElement).contentWindow })
-          );
         }
       })
       .catch((error: string) => {
         if (errorHandler) {
           errorHandler(error);
+        }
+      })
+      .finally(() => {
+        if (window.VgControllerClient) {
+          setVgController(
+            new window.VgControllerClient({ target_window: (iframeEl.current as HTMLIFrameElement).contentWindow })
+          );
         }
       });
 
