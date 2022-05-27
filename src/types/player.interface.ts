@@ -18,6 +18,7 @@ export interface PlayerProps {
   onVolumeChanged?: (volume: number) => void;
   onSpeedChanged?: (speed: number) => void;
   onSeeked?: () => void;
+  errorHandler?: (error: any) => void;
 }
 
 export interface PlayerProgress {
