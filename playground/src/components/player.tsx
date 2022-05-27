@@ -29,9 +29,6 @@ const Player = () => {
   const onDone = () => {
     console.log('onDone');
   };
-  const onIntroVideoDone = () => {
-    console.log('onIntroVideoDone');
-  };
   const onVolumeChanged = (volume: number) => {
     console.log(volume);
     console.log('onVolumeChanged');
@@ -66,7 +63,6 @@ const Player = () => {
         onPause={onPause}
         onProgress={onProgress}
         onDone={onDone}
-        onIntroVideoDone={onIntroVideoDone}
         onVolumeChanged={onVolumeChanged}
         onSpeedChanged={onSpeedChanged}
         onSeeked={onSeeked}

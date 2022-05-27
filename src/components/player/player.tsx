@@ -15,7 +15,6 @@ const Player = ({
   onPause,
   onProgress,
   onDone,
-  onIntroVideoDone,
   onVolumeChanged,
   onSpeedChanged,
   onSeeked,
@@ -34,7 +33,6 @@ const Player = ({
       onPause={onPause}
       onProgress={onProgress}
       onDone={onDone}
-      onIntroVideoDone={onIntroVideoDone}
       onVolumeChanged={onVolumeChanged}
       onSpeedChanged={onSpeedChanged}
       onSeeked={onSeeked}
