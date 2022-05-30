@@ -3,9 +3,25 @@ import { css } from '@emotion/react';
 import { Player as FCPlayer } from '../../../src';
 import type { PlayerProgress, CommandType } from '../../../src';
 
+const courseContentList = [
+  {
+    id: 1,
+    src: 'https://v.kr.kollus.com/s?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdWlkIjoic3VqaW5fcGFyay0xNzQwMjUiLCJleHB0IjoxNjUzOTE0OTE0LCJtYyI6W3sibWNrZXkiOiJzSTB4RlVEQyIsIm1jcGYiOiJmYXN0Y2FtcC1wYzEtaGQtMSJ9XX0.93Qe6Z4f-gcXg9QVjSs2phmWhswcHEHaH6e5mhGqhsY&custom_key=0b50155632326ca34e42550f10d6fca2c42c7b62a47eee4841aabd0cd1a913ea&s=0',
+  },
+  {
+    id: 2,
+    src: 'https://v.kr.kollus.com/s?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdWlkIjoic3VqaW5fcGFyay0xNzQwMjUiLCJleHB0IjoxNjUzOTE0OTYxLCJtYyI6W3sibWNrZXkiOiI2azVsaFJZdCIsIm1jcGYiOiJmYXN0Y2FtcC1wYzEtaGQtMSJ9XX0.uflFhSL33XKrnzr-ZEaYzIVX-3Yzx0gjtzNwMl2zlmY&custom_key=0b50155632326ca34e42550f10d6fca2c42c7b62a47eee4841aabd0cd1a913ea&s=0',
+  },
+  {
+    id: 3,
+    src: 'https://v.kr.kollus.com/s?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdWlkIjoic3VqaW5fcGFyay0xNzQwMjUiLCJleHB0IjoxNjUzOTE0OTgzLCJtYyI6W3sibWNrZXkiOiJNZmdOaFhoSSIsIm1jcGYiOiJmYXN0Y2FtcC1wYzEtaGQtMSJ9XX0.lwGZ9bZaYQUfEHQUNJdV32NMjGhuPFR1929jUAMERpI&custom_key=0b50155632326ca34e42550f10d6fca2c42c7b62a47eee4841aabd0cd1a913ea&s=0',
+  },
+];
+
 const Player = () => {
   const [command, setCommand] = useState<CommandType>('none');
   const [position, setPosition] = useState(0);
+  const [playerSrc, setPlayerSrc] = useState(courseContentList[0].src);
 
   const onScriptLoaded = () => {
     console.log('onScriptLoaded');
@@ -52,7 +68,7 @@ const Player = () => {
       `}
     >
       <FCPlayer
-        src="https://v.kr.kollus.com/s?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdWlkIjoic3VqaW5fcGFyay0xNzQwMjUiLCJleHB0IjoxNjUzNjUzNjkzLCJtYyI6W3sibWNrZXkiOiJzSTB4RlVEQyIsIm1jcGYiOiJmYXN0Y2FtcC1wYzEtaGQtMSJ9XX0.n2-RbQODZdhrNSosw77-br_fQVdcM1NaRo3l0ZyNWVk&custom_key=0b50155632326ca34e42550f10d6fca2c42c7b62a47eee4841aabd0cd1a913ea&s=0"
+        src={playerSrc}
         command={command}
         position={position}
         className="kollus-player"
@@ -67,6 +83,13 @@ const Player = () => {
         onSpeedChanged={onSpeedChanged}
         onSeeked={onSeeked}
       />
+      <div>
+        {courseContentList.map((content) => (
+          <button key={content.id} onClick={() => setPlayerSrc(content.src)}>
+            코스컨텐츠{content.id}
+          </button>
+        ))}
+      </div>
       <div>
         <button onClick={() => setCommand('play')}>Play</button>
         <button onClick={() => setCommand('pause')}>Pause</button>
