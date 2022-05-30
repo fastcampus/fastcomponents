@@ -130,6 +130,14 @@ const KollusPlayer = ({
   }, [vgController, cachedPosition]);
 
   useEffect(() => {
+    if (window.VgControllerClient) {
+      setVgController(
+        new window.VgControllerClient({ target_window: (iframeEl.current as HTMLIFrameElement).contentWindow })
+      );
+    }
+  }, [src]);
+
+  useEffect(() => {
     if (command === 'play') {
       if (vgController) {
         vgController.play();
