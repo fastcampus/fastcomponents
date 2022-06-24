@@ -1,6 +1,6 @@
-import type { PieConfig, BarConfig, ColumnConfig } from '@ant-design/plots';
+import type { PieConfig, BarConfig, ColumnConfig, HeatmapConfig } from '@ant-design/plots';
 
-export { PieConfig, BarConfig, ColumnConfig };
+export { PieConfig, BarConfig, ColumnConfig, HeatmapConfig };
 
 export interface PieChartData {
   label: string;
@@ -14,6 +14,12 @@ export interface BarChartData {
 
 export interface ColumnChartData {
   label: string;
+  value: number;
+}
+
+export interface HeatmapChartData {
+  xLabel: string;
+  yLabel: string;
   value: number;
 }
 
