@@ -1,5 +1,6 @@
 import Button from './components/button';
 import Calendar from './components/calendar';
+import PieChart from './components/charts/pie';
 import Checkbox from './components/checkbox';
 import CodeEditor from './components/code-editor';
 import FileUploader from './components/file-uploader';
@@ -46,6 +47,7 @@ export {
   Input,
   Checkbox,
   Calendar,
+  PieChart,
   CodeEditor,
   Table,
   Pagination,
