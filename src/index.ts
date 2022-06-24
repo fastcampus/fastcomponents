@@ -1,6 +1,7 @@
 import Button from './components/button';
 import Calendar from './components/calendar';
 import BarChart from './components/charts/bar';
+import ColumnChart from './components/charts/column';
 import PieChart from './components/charts/pie';
 import Checkbox from './components/checkbox';
 import CodeEditor from './components/code-editor';
@@ -24,7 +25,15 @@ export type {
   CalendarLocation,
   CalendarContexts,
 } from './types/calendar.interface';
-export type { PieConfig, PieChartData, BarConfig, BarChartData, ChartProps } from './types/charts.interface';
+export type {
+  PieConfig,
+  PieChartData,
+  BarConfig,
+  BarChartData,
+  ColumnConfig,
+  ColumnChartData,
+  ChartProps,
+} from './types/charts.interface';
 export type { CheckboxProps } from './types/checkbox.interface';
 export type { SelectableLanguageType, SelectableThemeType, CodeEditorProps } from './types/code-editor.interface';
 export type { FileSize, DropzoneProps, FileUploaderProps } from './types/file-uploader.interface';
@@ -50,6 +59,7 @@ export {
   Checkbox,
   Calendar,
   BarChart,
+  ColumnChart,
   PieChart,
   CodeEditor,
   Table,
