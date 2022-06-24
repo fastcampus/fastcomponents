@@ -25,5 +25,5 @@ export interface HeatmapChartData {
 
 export interface ChartProps<CData, CConfig> {
   data: CData[];
-  config?: CConfig;
+  config?: Partial<CConfig>;
 }
