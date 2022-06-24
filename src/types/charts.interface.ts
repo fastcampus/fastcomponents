@@ -1,6 +1,6 @@
-import type { PieConfig, BarConfig } from '@ant-design/plots';
+import type { PieConfig, BarConfig, ColumnConfig } from '@ant-design/plots';
 
-export { PieConfig, BarConfig };
+export { PieConfig, BarConfig, ColumnConfig };
 
 export interface PieChartData {
   label: string;
@@ -8,6 +8,11 @@ export interface PieChartData {
 }
 
 export interface BarChartData {
+  label: string;
+  value: number;
+}
+
+export interface ColumnChartData {
   label: string;
   value: number;
 }
