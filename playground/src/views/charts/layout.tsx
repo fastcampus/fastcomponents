@@ -107,6 +107,13 @@ const ChartLayout = () => {
       value: 4,
     },
   ];
+  const ColumnChartConfig = {
+    meta: {
+      value: {
+        alias: '값',
+      },
+    },
+  };
 
   const HeatmapChartData: HeatmapChartData[] = [
     {
@@ -545,7 +552,7 @@ const ChartLayout = () => {
 
       <span className="chart-title">Column chart</span>
       <ChartBlock>
-        <ColumnChart data={ColumnChartData} />
+        <ColumnChart data={ColumnChartData} config={ColumnChartConfig} />
       </ChartBlock>
 
       <span className="chart-title">Heatmap chart</span>
