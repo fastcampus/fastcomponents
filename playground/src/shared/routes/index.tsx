@@ -1,6 +1,7 @@
 import React from 'react';
 import type { RouteObject } from 'react-router-dom';
 import { useRoutes } from 'react-router-dom';
+import ChartLayout from '../../views/charts/layout';
 import HomeLayout from '../../views/home/layout';
 import PaginationLayout from '../../views/pagination/layout';
 import CodeEditorLayout from '../../views/code-editor/layout';
@@ -36,6 +37,10 @@ export const routes: RouteObject[] = [
   {
     path: '/player',
     element: <PlayerLayout />,
+  },
+  {
+    path: '/charts',
+    element: <ChartLayout />,
   },
 ];
 
