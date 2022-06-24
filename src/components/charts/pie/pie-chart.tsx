@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Pie } from '@ant-design/plots';
-import { ObjectUtil } from '@day1co/pebbles';
-import type { PieConfig, PieChartProps } from '../../../types/charts.interface';
+import { mergeConfig } from '../util';
+import type { PieConfig, PieChartData, ChartProps } from '../../../types/charts.interface';
 
 const defaultConfig: PieConfig = {
   appendPadding: 10,
@@ -25,14 +25,8 @@ const defaultConfig: PieConfig = {
   ],
 };
 
-const mergeConfig = ({ data, config }: PieChartProps) => {
-  defaultConfig.data.splice(0, defaultConfig.data.length);
-  defaultConfig.data.push(...data);
-  return config ? ObjectUtil.merge(defaultConfig, config) : defaultConfig;
-};
-
-const PieChart = ({ data, config }: PieChartProps) => {
-  const mergedConfig = useMemo<PieConfig>(() => mergeConfig({ data, config }) as PieConfig, [data, config]);
+const PieChart = ({ data, config }: ChartProps<PieChartData, PieConfig>) => {
+  const mergedConfig = useMemo(() => mergeConfig({ data, defaultConfig, config }), [data, config]);
 
   return <Pie {...mergedConfig} />;
 };
