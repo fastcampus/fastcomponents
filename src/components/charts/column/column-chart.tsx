@@ -21,11 +21,6 @@ const defaultConfig: ColumnConfig = {
       autoRotate: false,
     },
   },
-  meta: {
-    value: {
-      alias: '값',
-    },
-  },
 };
 
 const ColumnChart = ({ data, config }: ChartProps<ColumnChartData, ColumnConfig>) => {
