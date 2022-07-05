@@ -38,7 +38,7 @@ const Select = ({
   }, [selectedValue]);
 
   useEffect(() => {
-    if (value) {
+    if (value !== undefined && value !== null && !Number.isNaN(value)) {
       setSelectedValue([value]);
     } else {
       setSelectedValue([]);
