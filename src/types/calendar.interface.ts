@@ -10,6 +10,7 @@ export interface CalendarProps {
   dayColumns?: boolean;
   dateinput?: boolean;
   rangeDate?: boolean;
+  disableSelect?: boolean;
   setDate?: (date: Date | null) => void;
   setEndDate?: (date: Date | null) => void;
   calendarLocation?: MonthCalendarProps;
@@ -48,6 +49,7 @@ export interface CalendarContexts {
   setCalendarLocation?: React.Dispatch<React.SetStateAction<CalendarLocation>>;
   rangeDate: boolean;
   timeZone?: TimeZoneType;
+  disableSelect: boolean;
   dayColumns: boolean;
   renderDate?: RenderDate;
 }

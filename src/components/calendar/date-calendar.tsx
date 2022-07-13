@@ -10,6 +10,7 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
     setSelectedDate,
     selectedEndDate,
     setSelectedEndDate,
+    disableSelect,
     rangeDate,
     renderDate,
   } = useContext(CalendarContext);
@@ -48,6 +49,7 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
           : ''
       }`}
       onClick={() => {
+        if (disableSelect) return;
         if (setSelectedEndDate && dateNumber > 0 && rangeDate && selectedDate && !selectedEndDate) {
           const newSelectedEndDate = DateUtil.parse(
             `${calendarLocation.year}-${String(calendarLocation.month).padStart(2, '0')}-${String(dateNumber).padStart(

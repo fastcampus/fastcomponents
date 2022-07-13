@@ -9,6 +9,7 @@ export const CalendarContext = createContext<CalendarContexts>({
   calendarLocation: { year: new Date().getFullYear(), month: getMonth(new Date()) },
   rangeDate: false,
   timeZone: 'Asia/Seoul',
+  disableSelect: false,
   dayColumns: false,
 });
 
@@ -21,6 +22,7 @@ const Calendar = ({
   dayColumns = false,
   dateinput = false,
   rangeDate = false,
+  disableSelect = false,
   calendarLocation: calendarLocationProps,
   setCalendarLocation: setCalendarLocationProps,
   timeZone = 'Asia/Seoul',
@@ -72,6 +74,7 @@ const Calendar = ({
         selectedEndDate,
         rangeDate,
         timeZone,
+        disableSelect,
         dayColumns,
         renderDate,
       }}
