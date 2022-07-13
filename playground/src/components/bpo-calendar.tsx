@@ -41,7 +41,7 @@ const BpoCalendar = () => {
         }
       `}
     >
-      <FCCalendar rangeDate navigator dayColumns />
+      <FCCalendar rangeDate navigator dayColumns renderDate={(dateNumber) => dateNumber.toString().padStart(2, '0')} />
     </div>
   );
 };

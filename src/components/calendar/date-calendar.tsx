@@ -4,8 +4,15 @@ import { CalendarContext } from './calendar';
 import type { DateCalendarProps } from 'src/types/calendar.interface';
 
 const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
-  const { selectedDate, calendarLocation, setSelectedDate, selectedEndDate, setSelectedEndDate, rangeDate } =
-    useContext(CalendarContext);
+  const {
+    selectedDate,
+    calendarLocation,
+    setSelectedDate,
+    selectedEndDate,
+    setSelectedEndDate,
+    rangeDate,
+    renderDate,
+  } = useContext(CalendarContext);
 
   const currentDate =
     dateNumber > 0
@@ -68,7 +75,7 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
         }
       }}
     >
-      {dateNumber <= 0 ? '' : dateNumber}
+      {dateNumber <= 0 ? '' : renderDate ? renderDate(dateNumber) : dateNumber}
     </div>
   );
 };
