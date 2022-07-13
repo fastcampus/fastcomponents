@@ -4,6 +4,7 @@ export interface CalendarProps {
   date?: Date;
   endDate?: Date;
   navigator?: boolean;
+  dayColumns?: boolean;
   dateinput?: boolean;
   rangeDate?: boolean;
   setDate?: (date: Date | null) => void;
@@ -43,4 +44,5 @@ export interface CalendarContexts {
   setCalendarLocation?: React.Dispatch<React.SetStateAction<CalendarLocation>>;
   rangeDate: boolean;
   timeZone?: TimeZoneType;
+  dayColumns: boolean;
 }

@@ -41,7 +41,7 @@ const BpoCalendar = () => {
         }
       `}
     >
-      <FCCalendar rangeDate navigator />
+      <FCCalendar rangeDate navigator dayColumns />
     </div>
   );
 };
