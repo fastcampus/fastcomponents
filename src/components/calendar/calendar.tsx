@@ -26,7 +26,7 @@ const Calendar = ({
   calendarLocation: calendarLocationProps,
   setCalendarLocation: setCalendarLocationProps,
   timeZone = 'Asia/Seoul',
-  renderDate,
+  focusedDates,
 }: CalendarProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(date || null);
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(rangeDate ? (endDate ? endDate : null) : null);
@@ -76,7 +76,7 @@ const Calendar = ({
         timeZone,
         disableSelect,
         dayColumns,
-        renderDate,
+        focusedDates,
       }}
     >
       <div className="fc-calendar">

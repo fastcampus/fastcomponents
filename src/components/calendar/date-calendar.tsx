@@ -12,7 +12,7 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
     setSelectedEndDate,
     disableSelect,
     rangeDate,
-    renderDate,
+    focusedDates,
   } = useContext(CalendarContext);
 
   const currentDate =
@@ -47,7 +47,7 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
         DateUtil.diff(selectedEndDate, currentDate, 'day') < 0
           ? 'selected-range'
           : ''
-      }`}
+      } ${focusedDates?.includes(dateNumber) ? 'focused' : ''}`}
       onClick={() => {
         if (disableSelect) return;
         if (setSelectedEndDate && dateNumber > 0 && rangeDate && selectedDate && !selectedEndDate) {
@@ -77,7 +77,7 @@ const DateCalendar = ({ dateNumber, className }: DateCalendarProps) => {
         }
       }}
     >
-      {dateNumber <= 0 ? '' : renderDate ? renderDate(dateNumber) : dateNumber}
+      {dateNumber <= 0 ? '' : dateNumber}
     </div>
   );
 };

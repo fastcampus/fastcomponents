@@ -1,8 +1,6 @@
 import type { TimeZoneType } from '@day1co/pebbles';
 import type { ReactNode } from 'react';
 
-type RenderDate = (dateNumber: number) => ReactNode | string;
-
 export interface CalendarProps {
   date?: Date;
   endDate?: Date;
@@ -16,7 +14,7 @@ export interface CalendarProps {
   calendarLocation?: MonthCalendarProps;
   setCalendarLocation?: (calendarLocation: MonthCalendarProps) => void;
   timeZone?: TimeZoneType;
-  renderDate?: RenderDate;
+  focusedDates?: number[];
 }
 
 export interface MonthCalendarProps {
@@ -51,5 +49,5 @@ export interface CalendarContexts {
   timeZone?: TimeZoneType;
   disableSelect: boolean;
   dayColumns: boolean;
-  renderDate?: RenderDate;
+  focusedDates?: number[];
 }
