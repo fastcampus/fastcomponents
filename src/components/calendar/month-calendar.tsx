@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { DateUtil } from '@day1co/pebbles';
 import WeekCalendar from './week-calendar';
 import type { MonthCalendarProps } from 'src/types/calendar.interface';
 import { DAY_COUNT_OF_ONE_WEEK } from './utils';
+import DayColumns from './day-columns';
+import { CalendarContext } from './calendar';
 
 const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
+  const { dayColumns } = useContext(CalendarContext);
   const date = new Date(`${year}-${month}-01`);
   const firstWeekLeftPad = date.getDay();
   const notFirstWeekLeftPad = 0;
@@ -44,6 +47,11 @@ const MonthCalendar = ({ year, month }: MonthCalendarProps) => {
       />
     );
   });
-  return <div className="month-calendar">{WeekCalendarList}</div>;
+  return (
+    <div className="month-calendar">
+      {dayColumns && <DayColumns />}
+      {WeekCalendarList}
+    </div>
+  );
 };
 export default MonthCalendar;

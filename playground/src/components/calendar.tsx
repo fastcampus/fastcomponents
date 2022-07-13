@@ -62,6 +62,7 @@ const Calendar = () => {
           rangeDate
           navigator
           dateinput
+          dayColumns
         />
       </div>
     </div>
