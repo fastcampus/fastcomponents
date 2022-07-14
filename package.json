@@ -1,6 +1,6 @@
 {
   "name": "@fastcampus/fastcomponents",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "Common components for Fastcampus",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
