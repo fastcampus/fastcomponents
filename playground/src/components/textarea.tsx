@@ -4,6 +4,9 @@ import { TextArea } from '../../../src';
 
 const InputList = () => {
   const [messageA, setMessageA] = useState('');
+  const [keydown, setKeydown] = useState('');
+  const [keypress, setKeypress] = useState('');
+  const [keyup, setKeyup] = useState('');
   return (
     <div
       css={css`
@@ -27,7 +30,15 @@ const InputList = () => {
     >
       <h1>Text Area</h1>
       <div>Message a : {messageA}</div>
-      <TextArea onChange={(e) => setMessageA(e.target.value)} />
+      <div>onKeyDown : {keydown}</div>
+      <div>onKeyPress : {keypress}</div>
+      <div>onKeyUp : {keyup}</div>
+      <TextArea
+        onChange={(e) => setMessageA(e.target.value)}
+        onKeyDown={(e) => setKeydown(e.code)}
+        onKeyPress={(e) => setKeypress(e.code)}
+        onKeyUp={(e) => setKeyup(e.code)}
+      />
     </div>
   );
 };

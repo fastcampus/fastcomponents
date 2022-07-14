@@ -10,6 +10,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       placeholder,
       disabled,
       onChange,
+      onKeyDown,
+      onKeyPress,
+      onKeyUp,
       required,
       value,
       readOnly,
@@ -27,6 +30,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         defaultValue={defaultValue}
         disabled={disabled}
         onChange={onChange}
+        onKeyDown={onKeyDown}
+        onKeyPress={onKeyPress}
+        onKeyUp={onKeyUp}
         ref={ref}
         required={required}
         value={value}
